@@ -9,13 +9,32 @@
     transition-property: all;
     transition-duration: 1s;
 }
+.maps{
+    width:70%;
+    border: 1px solid black;
+}
+.nameGroups{
+    width:30%;
+    height:100%;
+}
+.nameList{
+    height: 100%;
+    overflow: scroll;
+}
+.body_container{
+    height:50vh;
+    display: flex;
+}
 .main-map{
     opacity: 1;
     width:100%;
     height:60vh;
-    border: 1px solid black;
 }
-.display-none{
+.nameList::-webkit-scrollbar {
+    width: 6px;  /* 스크롤바 두께를 아주 얇게 조절 */
+}
+/* 임시 사용 나중에 바꿈 */
+.display-none{ 
     display: none;
 }
 .end{

@@ -1,11 +1,11 @@
 
-import {Route, Routes} from 'react-router'
+import {Route, Routes , Link} from 'react-router'
 import { Button, Spinner, Container, Nav, Navbar, Row, Col, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import parksData from '../data/parksData.js'
 import Logo from '../images/logo.png'
 import Main from './Main'
 function Navigation(){
-    
     
     return(
         <>
@@ -18,7 +18,7 @@ function Navigation(){
                 </Container>
             </Navbar>
             <Routes>
-                <Route path="/" element={<Main/>}></Route>
+                <Route path="/" element={<Main Data={parksData}/>}></Route>
             </Routes>
         </>
     )
