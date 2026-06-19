@@ -5,29 +5,54 @@ import "./Main.css";
 
 function Main({Data}){
     
-    let [viewStatus, setViewStatus] = useState('start');
+    let [showIntro, setShowIntro] = useState(true);
     return(
         <>
-            <div className={'main-bg '+ viewStatus} onClick={()=>{setViewStatus('display-none');}}>
-                {/* 일단은 바로 사라지지만 나중에 서서히 바꿈 + 지도칸 서서히 보이게 */}
+            <div className={'main-bg '+ (showIntro ? 'start' : 'fade-out')} 
+            onClick={()=>{setShowIntro(false);}}>
             </div>
             <div className="body_container">
                 <div className="maps">
-                    <p style={{textAlign:'center'}}>여기에 지도</p>
+                    <div className="map-placeholder">
+                        <span className="map-icon">🗺️</span>
+                        <p className="map-text">지도를 불러오는 중입니다...</p>
+                    </div>
                 </div>
                 <div className="nameGroups">
-                    <input type="text" placeholder="검색하기" style={{width:"100%"}}/>
+                    <div className="search-box-wrapper">
+                        <Form.Control 
+                            type="text" 
+                            placeholder="🔍  검색어를 입력하세요.." 
+                            className="custom-search-input"
+                        />
+                    </div>
                     {/* 검색하면 아래 리스트에서 해당하는것만 나오게. */}
                     <ListGroup className="nameList">
                         {
                             Data.map((item,index)=>{
                                 return(
-                                    <ListGroup.Item>{item.name}</ListGroup.Item>
+                                    <ListGroup.Item variant="light">{item.name}</ListGroup.Item>
                                 )
                             })
-                        }
+                        }    
                     </ListGroup>
+                    <div className="switch-container-horizontal">
+                        <Form.Check 
+                            type="switch"
+                            id="trail-switch"
+                            label="산책로 숨김"
+                            className="me-4" /* 오른쪽 간격 띄우기 */
+                        />
+                        <Form.Check 
+                            type="switch"
+                            id="park-switch"
+                            label="공원 숨김"
+                        />
+                    </div>
                 </div>
+            </div>
+            <div className="global-footer">
+                <p>© 2026 OneCode All rights reserved. | naverAPI 활용 팀 과제</p>
             </div>
         </>
     )
