@@ -1,4 +1,5 @@
 import "./Main.css";
+import '../page2/page2'
 
 function Main(){
     return(
