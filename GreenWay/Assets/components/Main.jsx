@@ -1,14 +1,20 @@
 import { useEffect , useState , useRef } from "react";
+import { useNavigate } from "react-router";
 import { ListGroup , Form } from 'react-bootstrap';
 import "./Main.css";
 
 function Main({Data}){
-    const [showIntro, setShowIntro] = useState(true);
-    const [searchText, setSearchText] = useState("");
-    const [hidePark, setHidePark] = useState(false);
+    const [showIntro, setShowIntro] = useState(true); // 제일 처음 보여주는 화면 , 한번 클릭 이후 false
+    const [searchText, setSearchText] = useState(""); // 검색에 사용하기 위한 useState
+
+    const [hidePark, setHidePark] = useState(false); // 필터링에 필요한 useState 2개
     const [hideTrail, setHideTrail] = useState(false);
+
     const mapRef = useRef(null);
     const markerRef = useRef(null);
+    const infoWindowRef = useRef(null);
+    
+    const navigate = useNavigate();
 
     const filteredData = Data.filter((item) => {
         if (hidePark && item.type === "공원") return false;
@@ -60,6 +66,49 @@ function Main({Data}){
             position: location,
             map: mapRef.current
         });
+
+        // 기존 InfoWindow 제거
+        if (infoWindowRef.current) {
+            infoWindowRef.current.close();
+        }
+
+        // 새 InfoWindow 생성
+        infoWindowRef.current = new window.naver.maps.InfoWindow({
+            content: `
+                <div style="
+                    padding:10px;
+                    text-align:center;
+                    min-width:150px;
+                ">
+                    <strong>${place.name}</strong>
+                    <br/>
+                    <button id="detail-btn">
+                        상세보기
+                    </button>
+                </div>
+            `
+        });
+
+        infoWindowRef.current.open(
+            mapRef.current,
+            markerRef.current
+        );
+        setTimeout(() => {
+            const btn = document.getElementById("detail-btn");
+            if (!btn) return;
+            btn.onclick = () => {
+                if (place.type === "공원") {
+                    navigate(`/park/${place.id}`, {
+                        state: { data: place }
+                    });
+                }
+                else {
+                    navigate(`/trail/${place.id}`, {
+                        state: { data: place }
+                    });
+                }
+            };
+        }, 100);
     };    
 
     return(
