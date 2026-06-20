@@ -1,11 +1,67 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect , useState , useRef } from "react";
 import { ListGroup , Form } from 'react-bootstrap';
 import "./Main.css";
 
 function Main({Data}){
-    
-    let [showIntro, setShowIntro] = useState(true);
+    const [showIntro, setShowIntro] = useState(true);
+    const [searchText, setSearchText] = useState("");
+    const [hidePark, setHidePark] = useState(false);
+    const [hideTrail, setHideTrail] = useState(false);
+    const mapRef = useRef(null);
+    const markerRef = useRef(null);
+
+    const filteredData = Data.filter((item) => {
+        if (hidePark && item.type === "공원") return false;
+        if (hideTrail && item.type === "산책로") return false;
+        if (searchText &&
+            !item.name.toLowerCase().includes(searchText.toLowerCase()))
+            { 
+                return false; 
+            }
+
+        return true;
+    });
+
+    useEffect(() => {
+        if (!window.naver) return;
+
+    const mapOptions = {
+        center: new window.naver.maps.LatLng(
+            37.3595704,
+            127.105399
+        ),
+        zoom: 10
+    };
+        mapRef.current = new window.naver.maps.Map(
+        "map",
+        mapOptions
+    );
+    }, []);
+
+    const moveMap = (place) => {
+
+        if (!mapRef.current) return;
+
+        const location = new window.naver.maps.LatLng(
+            place.lat,
+            place.lng
+        );
+
+        mapRef.current.panTo(location);
+        mapRef.current.setZoom(15);
+
+        // 기존 마커 제거
+        if (markerRef.current) {
+            markerRef.current.setMap(null);
+        }
+
+        // 새 마커 생성
+        markerRef.current = new window.naver.maps.Marker({
+            position: location,
+            map: mapRef.current
+        });
+    };    
+
     return(
         <>
             <div className={'main-bg '+ (showIntro ? 'start' : 'fade-out')} 
@@ -19,8 +75,13 @@ function Main({Data}){
             <div className="body_container">
                 <div className="maps">
                     <div className="map-placeholder">
-                        <span className="map-icon">🗺️</span>
-                        <p className="map-text">지도를 불러오는 중입니다...</p>
+                        <div
+                            id="map"
+                            style={{
+                                width: "100%",
+                                height: "100%"
+                            }}
+                        ></div>
                     </div>
                 </div>
                 <div className="nameGroups">
@@ -29,17 +90,32 @@ function Main({Data}){
                             type="text" 
                             placeholder="🔍  검색어를 입력하세요.." 
                             className="custom-search-input"
+                            value={searchText}
+                            onChange={(e)=>setSearchText(e.target.value)}
                         />
                     </div>
                     {/* 검색하면 아래 리스트에서 해당하는것만 나오게. */}
                     <ListGroup className="nameList">
-                        {
-                            Data.map((item,index)=>{
-                                return(
-                                    <ListGroup.Item variant="light">{item.name}</ListGroup.Item>
-                                )
-                            })
-                        }    
+                    {
+                        filteredData.length === 0
+                        ? (
+                            <ListGroup.Item>
+                                조건에 맞는 결과가 없습니다.
+                            </ListGroup.Item>
+                        )
+                        : (
+                            filteredData.map((item) => (
+                                <ListGroup.Item
+                                    key={item.id}
+                                    variant="light"
+                                    onClick={() => moveMap(item)}
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    {item.name}
+                                </ListGroup.Item>
+                            ))
+                        )
+                    }
                     </ListGroup>
                     <div className="switch-container-horizontal">
                         <Form.Check 
@@ -47,11 +123,15 @@ function Main({Data}){
                             id="trail-switch"
                             label="산책로 숨김"
                             className="me-4" /* 오른쪽 간격 띄우기 */
+                            checked={hideTrail}
+                            onChange={(e) => setHideTrail(e.target.checked)}
                         />
                         <Form.Check 
                             type="switch"
                             id="park-switch"
                             label="공원 숨김"
+                            checked={hidePark}
+                            onChange={(e) => setHidePark(e.target.checked)}
                         />
                     </div>
                 </div>
