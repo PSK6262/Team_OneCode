@@ -1,27 +1,34 @@
 *{
     box-sizing: border-box;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    letter-spacing: -0.3px;
 }
-/* 색상은 AI의 도움을 받았습니다 */
 body { 
     background: linear-gradient(135deg, #f5f7f6 0%, #e4e9e6 100%);
     min-height: 100vh;
 }
 .main-bg{
-    position: fixed;            /* 화면 위에 띄우기 */
-    top: 50%;                   /* 세로 중앙 정렬 시작점 */
-    left: 50%;                  /* 가로 중앙 정렬 시작점 */
-    transform: translate(-50%, -50%); /* 정중앙 배치 */
+        position: fixed;            
+    top: 50%;                   
+    left: 50%;                  
+    transform: translate(-50%, -50%); 
     
-    width: 95vw;                /* 💡 화면 너비의 95% */
-    height: 95vh;               /* 💡 화면 높이의 95% */
-    background-image: url('../images/background1.png');
+    width: 95vw;                
+    height: 95vh;               
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/background1.png'); 
     background-size: cover;
     background-position: center;
     background-color: black;
+    border-radius: 20px;  
     
-    z-index: 9999;              /* 지도와 리스트보다 무조건 위에 배치 */
+    z-index: 9999;              
     transition: opacity 1s ease-out, visibility 1s ease-out; 
     pointer-events: auto;
+    cursor: pointer; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 .maps {
     width: 70%;
@@ -68,7 +75,7 @@ body {
     margin-bottom: 15px;
 }
 .body_container{
-    height:85vh;
+    height:80vh;
     padding : 10px 10px;
     display: flex;
 }
@@ -81,19 +88,17 @@ body {
     width: 6px;  /* 스크롤바 두께를 아주 얇게 조절 */
 }
 .nameList .list-group-item:hover {
-    background-color: #f1f3f5;      /* variant="light"보다 조금 더 선명한 회색 */
-    cursor: pointer;                /* 마우스 커서를 손가락 모양으로 */
-    transform: translateX(3px);     /* 오른쪽으로 살짝 움직이는 세련된 효과 */
+    background-color: #f1f3f5;
+    cursor: pointer; 
+    transform: translateX(3px);
 }
-/* 처음 켜졌을 때 (완전 보임) */
 .start {
     opacity: 1 !important;
     visibility: visible;
 }
-/* 클릭 후 천천히 사라질 때 (완전 투명) */
 .fade-out {
     opacity: 0 !important;
-    visibility: hidden; /* 1초 뒤 완전히 사라지면 마우스 클릭 및 요소를 화면에서 물리적으로 숨김 */
+    visibility: hidden;
     pointer-events: none !important;       
 }
 .switch-container-horizontal {
@@ -109,7 +114,42 @@ body {
 .global-footer {
     text-align: center;
     font-size: 12px;
-    color: #a0a0a0;     /* 눈에 너무 띄지 않는 차분한 회색 */
-    padding: 20px 0;    /* 위아래 살짝 여백 주기 */
-    margin-top: 10px;   /* body_container와의 최소 간격 */
+    color: #a0a0a0; 
+    padding: 20px 0;   
+    margin-top: 10px;  
+}
+.intro-content {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.intro-title {
+    font-size: 2.5rem; 
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+    color: #ffffff !important;
+}
+
+.intro-subtitle {
+    font-size: 1.2rem;          
+    font-weight: 400;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+
+.intro-click-hint {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 8px 16px;
+    border-radius: 30px;
+    animation: blink 2s infinite;
+}
+
+/* 안내 문구 깜빡임 효과 */
+@keyframes blink {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0.3; }
 }

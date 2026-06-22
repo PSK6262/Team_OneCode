@@ -11,6 +11,11 @@ function Main({Data}){
         <>
             <div className={'main-bg '+ (showIntro ? 'start' : 'fade-out')} 
             onClick={()=>{setShowIntro(false);}}>
+                <div className="intro-content">
+                    <h1 className="intro-title">잠깐 나가서 걷고 싶을 때</h1>
+                    <p className="intro-subtitle">내 주변 걷기 좋은 공원과 산책로 찾기</p>
+                    <span className="intro-click-hint">화면을 클릭하면 시작합니다</span>
+                </div>
             </div>
             <div className="body_container">
                 <div className="maps">

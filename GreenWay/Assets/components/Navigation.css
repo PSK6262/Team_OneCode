@@ -1,3 +1,5 @@
-.logo{
-    width:1%;
+*{
+    box-sizing: border-box;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    letter-spacing: -0.3px;
 }
