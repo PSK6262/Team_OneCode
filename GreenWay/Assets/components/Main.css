@@ -3,10 +3,12 @@
     font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
     letter-spacing: -0.3px;
 }
+
 body { 
     background: linear-gradient(135deg, #f5f7f6 0%, #e4e9e6 100%);
     min-height: 100vh;
 }
+
 .main-bg{
         position: fixed;            
     top: 50%;                   
@@ -20,8 +22,8 @@ body {
     background-position: center;
     background-color: black;
     border-radius: 20px;  
-    
-    z-index: 9999;              
+    /* 백그라운드 사진은 무조건 제일 위에 (z-index) */
+    z-index: 9999;           
     transition: opacity 1s ease-out, visibility 1s ease-out; 
     pointer-events: auto;
     cursor: pointer; 
@@ -36,8 +38,8 @@ body {
     border: 1px solid #dee2e6;   
     border-radius: 16px;         /* 둥근 모서리 */
     margin-right: 20px;          
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05); 
-    overflow: hidden;         
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05); /* inset = 박스 안쪽에 shadow */
+    overflow: hidden;
 }
 
 .map-placeholder {
@@ -61,12 +63,14 @@ body {
     color: #868e96;
     font-weight: 500;
 }
+
 .nameGroups{
     width:30%;
     height:100%;
     display: flex;
     flex-direction: column;
 }
+
 .nameList{
     height: 100%;
     overflow: scroll;
@@ -74,33 +78,40 @@ body {
     overflow-y: auto; 
     margin-bottom: 15px;
 }
+
 .body_container{
     height:80vh;
     padding : 10px 10px;
     display: flex;
 }
+
 .main-map{
     opacity: 1;
     width:100%;
     height:60vh;
 }
+
 .nameList::-webkit-scrollbar {
     width: 6px;  /* 스크롤바 두께를 아주 얇게 조절 */
 }
+
 .nameList .list-group-item:hover {
     background-color: #f1f3f5;
     cursor: pointer; 
     transform: translateX(3px);
 }
+
 .start {
-    opacity: 1 !important;
+    opacity: 1 !important; /* !important <- 상위파일 css에서 적힌거 무시 (index.css) */
     visibility: visible;
 }
+
 .fade-out {
     opacity: 0 !important;
     visibility: hidden;
     pointer-events: none !important;       
 }
+
 .switch-container-horizontal {
     display: flex;
     align-items: center;
@@ -111,6 +122,7 @@ body {
     font-size: 14px;
     color: #495057;
 }
+
 .global-footer {
     text-align: center;
     font-size: 12px;
@@ -118,6 +130,7 @@ body {
     padding: 20px 0;   
     margin-top: 10px;  
 }
+
 .intro-content {
     color: #ffffff !important;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);

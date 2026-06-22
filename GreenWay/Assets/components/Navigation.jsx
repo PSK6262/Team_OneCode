@@ -3,6 +3,7 @@ import { Button, Spinner, Container, Nav, Navbar, Row, Col, Card } from 'react-b
 import 'bootstrap/dist/css/bootstrap.min.css';
 import parksData from '../data/parksData.js'
 import Logo from '../images/logo.png'
+// 1페이지 Main Import
 import Main from './Main'
 import Page2 from '../page2/Page2.jsx';
 
@@ -12,7 +13,7 @@ function Navigation(){
     
     return(
         <>
-  
+
             <Navbar bg="light" data-bs-theme="light">
                 <Container>
 
@@ -21,7 +22,7 @@ function Navigation(){
                     </Navbar.Brand>
                     
                     <Nav className="me-auto">
- 
+
                         <Nav.Link onClick={() => { navigate("/") }} className="Home" style={{ cursor: 'pointer' }}>
                             메인화면
                         </Nav.Link>
