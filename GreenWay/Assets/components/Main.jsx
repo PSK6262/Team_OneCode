@@ -69,8 +69,8 @@ function Main({Data}){
                     min-height:200px;
                 ">
                     <p><strong>${place.name}</strong></p>
-                    ${ place.distance != 0 ? `<p>총 길이 ${Number(place.distance)/1000}KM</p>
-                                            <p>약 ${(place.time)}분</p>` : `` }
+                    ${ place.distance != 0 ? `<p>총 길이 ${Number(place.distance)/1000}KM</p>` : `` }
+                    ${ place.time != 0 ? `<p>약 ${(place.time)}분</p>` : ``}
                     <p><img src="${place.image}" style="width:120px; height:120px; objectFit:cover;"/></p>
                     <p style="margin:0;"><strong>...</strong></p>
                     <button id="detail-btn">

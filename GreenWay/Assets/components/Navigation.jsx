@@ -23,16 +23,13 @@ function Navigation(){
                     <Navbar.Brand style={{ cursor: 'pointer' }} onClick={() => { navigate("/") }}>
                         <img src={Logo} className='logo' alt="로고"/>
                     </Navbar.Brand>
-                    
                     <Nav className="me-auto">
-
                         <Nav.Link onClick={() => { navigate("/") }} className="Home" style={{ cursor: 'pointer' }}>
                             메인화면
                         </Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
-
             <Routes>
                 <Route path="/" element={<Main Data={parksData}/>}></Route>
                 <Route path="/trail" element={<Trail Data={parksData} />}></Route>
