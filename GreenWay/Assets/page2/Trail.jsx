@@ -1,74 +1,87 @@
 import { useParams } from 'react-router'
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import { MapPin, Sparkles, Ruler, ParkingCircle, Clock } from "lucide-react";
+import { Container, Row, Col } from 'react-bootstrap';
+import { MapPin, Sparkles, Ruler, ParkingCircle, Clock, Map } from "lucide-react";
 import './Trail.css';
 import parksData from '../data/parksData.js';
 import { motion } from 'framer-motion';
 
-function Trail({ Data,index }) {
+function Trail({ Data, index }) {
     let { id } = useParams();
+    let trail = Data.find((item) => item.id == id);
 
-    let trail = Data.find((item) => {
-        return item.id == id;
-    })
-
-    let trailIndex = Data.findIndex((item) => {
-        return item.id == id;
-    })
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}     /* 시작 상태: 투명도 0, 아래로 20px 떨어짐 */
-            animate={{ opacity: 1, y: 0 }}      /* 완료 상태: 투명도 1, 원래 위치 */
-            exit={{ opacity: 0, y: -20 }}       /* 사라질 때 상태 (선택) */
-            transition={{ duration: 1.0, ease: "easeOut" }} /* 0.5초 동안 부드럽게 */
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 1.0, ease: "easeOut" }}
+            style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
         >
-            <Container>
-                <Row>
-                    <h1>{trail.name}</h1>
-                    <Col md={4}>
-                        <img src={trail.image} style={{ width: '600px', height: '600px', backgroundSize: 'cover', marginTop:'50px' }} />
+
+            <Container className="trail-page-container" style={{ padding: '0 20px' }}>
+                
+                <div className="trail-title-box">
+                    <h1 className="m-0 fw-bold" style={{ color: '#1a3a2a', textAlign: 'left', paddingLeft: '20px' }}>
+                        {trail.name}
+                    </h1>
+                </div>
+
+                <Row className="align-items-start mx-0" style={{ marginBottom: '40px' }}>
+                    <Col md={5} className="mb-4 mb-md-0 text-center">
+                        <img 
+                            src={trail.image} 
+                            alt={trail.name} 
+                            style={{ 
+                                width: '100%', 
+                                maxWidth: '500px',
+                                height: '475px', 
+                                aspectRatio: '1/1',
+                                objectFit: 'cover', 
+                                borderRadius: '24px', 
+                                boxShadow: '0 12px 36px rgba(0,0,0,0.1)'
+                            }} 
+                        />
                     </Col>
-                    <Card style={{ width: '23rem', marginLeft: 'auto' }}>
-                        <Card.Body>
-                            <div className="inner-box">
-                                <MapPin size={18} color='red'/>
-                                <h5>주소</h5>
-                                <Card.Text>{trail.address}</Card.Text>
-                            </div>
-                        </Card.Body>
-                        <Card.Body>
-                            <div className="inner-box">
-                                <Sparkles size={18} color='yellowgreen'/>
-                                <h5>특징</h5>
-                                <Card.Text>{trail.description}</Card.Text>
-                            </div>
-                        </Card.Body>
-                        <Card.Body>
-                            <div className="inner-box">
-                                <Ruler size={18}/>
-                                <h5>산책로 길이</h5>
-                                <Card.Text>{trail.distance}m</Card.Text>
-                            </div>
-                        </Card.Body>
-                        <Card.Body>
-                            <div className="inner-box">
-                                <ParkingCircle size={18} color='blue'/>
-                                <h5>편의 시설</h5>
-                                <Card.Text>{trail.convenience}</Card.Text>
-                            </div>
-                        </Card.Body>
-                        <Card.Body>
-                        <div className="inner-box">
-                            <Clock size={18}/>
-                                <h5>산책 시간</h5>
-                                <Card.Text>{trail.time}분</Card.Text>
-                            </div>
-                        </Card.Body>
-                    </Card>
+
+                    <Col md={7} lg={6} className="ms-auto">
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                            
+                            {[
+                                { icon: <MapPin size={20} color='orange' />, title: '주소', text: trail.address },
+                                { icon: <Sparkles size={20} color='yellowgreen' />, title: '특징', text: trail.description },
+                                { icon: <Ruler size={20} color='#4A5D4E' />, title: '산책로 길이', text: `${trail.distance}m` },
+                                { icon: <ParkingCircle size={20} color='blue' />, title: '편의 시설', text: trail.convenience },
+                                { icon: <Clock size={20} color='green' />, title: '산책 시간', text: `${trail.time}분` }
+                            ].map((item, idx) => (
+                                <div key={idx} className="glass-info-item">
+                                    <div style={{
+                                        background: 'rgba(255, 255, 255, 0.9)',
+                                        width: '44px',
+                                        height: '44px',
+                                        borderRadius: '12px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+                                        flexShrink: 0
+                                    }}>
+                                        {item.icon}
+                                    </div>
+                                    <div style={{ flex: 1, textAlign: 'left' }}>
+                                        <h6 style={{ margin: '0 0 2px 0', fontWeight: '700', color: '#1a3a2a' }}>{item.title}</h6>
+                                        <p style={{ margin: 0, color: '#333', fontSize: '14px', lineHeight: '1.5', fontWeight: '500' }}>{item.text}</p>
+                                    </div>
+                                </div>
+                            ))}
+
+                        </div>
+                    </Col>
                 </Row>
             </Container>
+
+            <div className="trail-bottom-footer-bg"></div>
         </motion.div>
-    )
+    );
 }
 
 export default Trail;
