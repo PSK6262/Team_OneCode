@@ -9,6 +9,8 @@ import Main from './Main'
 
 // 여기 아래에 3페이지 Import 하세요
 
+
+import IMG from '../images/id1.png'
 function Navigation(){
     
     return(
@@ -23,6 +25,8 @@ function Navigation(){
             </Navbar>
             <Routes>
                 <Route path="/" element={<Main Data={parksData}/>}></Route>
+                {/* <Route path="/trail" element={<Trail Data={parksData}/>}></Route>
+                <Route path="/park" element={<Park Data={parksData}/>}></Route> */}
             </Routes>
         </>
     )

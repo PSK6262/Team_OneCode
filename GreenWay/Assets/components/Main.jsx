@@ -25,10 +25,10 @@ function Main({Data}){
         if (!window.naver) return;
         const mapOptions = {
             center: new window.naver.maps.LatLng(
-                37.3595704,
-                127.105399
+                Data[0].lat,
+                Data[0].lng
             ),
-            zoom: 10
+            zoom: 15
         };
             mapRef.current = new window.naver.maps.Map(
             "map",
@@ -42,6 +42,7 @@ function Main({Data}){
             place.lat,
             place.lng
         );
+
         mapRef.current.panTo(location); // 천천히 이동
         mapRef.current.setZoom(15);
         // 기존 마커 지우기
@@ -63,10 +64,14 @@ function Main({Data}){
                 <div style="
                     padding:10px;
                     text-align:center;
-                    min-width:150px;
+                    min-width:200px;
+                    min-height:200px;
                 ">
-                    <strong>${place.name}</strong>
-                    <br/>
+                    <p><strong>${place.name}</strong></p>
+                    ${ place.distance != 0 ? `<p>총 길이 ${Number(place.distance)/1000}KM</p>
+                                            <p>약 ${(place.time)}분</p>` : `` }
+                    <p><img src="${place.image}" style="width:120px; height:120px; objectFit:cover;"/></p>
+                    <p style="margin:0;"><strong>...</strong></p>
                     <button id="detail-btn">
                         상세보기
                     </button>
