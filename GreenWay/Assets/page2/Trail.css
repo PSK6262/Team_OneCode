@@ -1,26 +1,9 @@
 
-/* .page2-container {
-    width: 100%;
-    min-height: 100vh;
-    background-image: url('../images/14-image.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-} */
-
 h1{
     text-align: left;
     width: 100%;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.6)
-}
-
-.trailImg-box{
-    width: 600px;
-    height: 600px;
-    background-image: url('../images/14-image.png');
-    background-size: cover;
-    
 }
 
 .inner-box{
