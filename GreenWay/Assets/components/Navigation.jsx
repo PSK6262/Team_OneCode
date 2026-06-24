@@ -7,6 +7,7 @@ import parksData from '../data/parksData.js'
 import Main from './Main'
 // 2페이지 import
 import Trail from '../page2/Trail.jsx';
+// 3페이지 import
 import Park from './Park3.jsx'
 
 function Navigation(){
@@ -15,7 +16,7 @@ function Navigation(){
     
     return(
         <>
-            <Navbar className='navbar' data-bs-theme="light">
+            <Navbar className='navbar_main' data-bs-theme="light">
                 <Container>
                     <Navbar.Brand style={{ cursor: 'pointer' }} onClick={() => { navigate("/") }}>
                         <img src={Logo} className='logo' alt="로고"/>

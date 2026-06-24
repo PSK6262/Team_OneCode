@@ -59,40 +59,6 @@ function Main({Data}){
             position: location,
             map: mapRef.current
         });
-        // // 기존 InfoWindow 제거
-        // if (infoWindowRef.current) {
-        //     infoWindowRef.current.close();
-        // }
-        // // 새 InfoWindow 생성
-        // infoWindowRef.current = new window.naver.maps.InfoWindow({
-        //     content: `
-        //         <div style="
-        //             padding:10px;
-        //             text-align:center;
-        //             min-width:100px;
-        //             min-height:100px;
-        //         ">
-        //             <p><strong>${place.name}(${place.type})</strong></p>
-        //             ${ place.distance != 0 ? `<p>총 길이 ${Number(place.distance)/1000}KM</p>` : `` }
-        //             ${ place.time != 0 ? `<p>약 ${(place.time)}분</p>` : ``}
-        //             <p><img src="${place.image}" style="width:80px; height:80px; objectFit:cover;"/></p>
-        //             <p style="margin:0;"><strong>...</strong></p>
-        //             <button id="detail-btn" style="
-        //                 background: #03C75A;
-        //                 color: white;
-        //                 border: none;
-        //                 border-radius: 6px;
-        //                 padding: 6px 12px;"
-        //             >
-        //                 상세보기
-        //             </button>
-        //         </div>
-        //     `
-        // });
-        // infoWindowRef.current.open(
-        //     mapRef.current,
-        //     markerRef.current
-        // );
         setTimeout(() => {
             const btn = document.getElementById("detail-btn");
             if (!btn) return;
