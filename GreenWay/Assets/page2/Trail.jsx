@@ -10,6 +10,7 @@ function Trail() {
     const { id } = useParams();
     const [ data, setData ] = useState(null);
     const [ vusdml, setVusdml ] = useState(false);
+    const [ showWebsite, setShowWebsite ] = useState(false);
 
     useEffect(() => {
         const trail = parksData.find((item) => item.id == id);
@@ -118,17 +119,33 @@ function Trail() {
                                 <span><strong>산책 시간:</strong> {data.time}분</span>
                             </div>
                         </div>
-
-                        <button className="nav-button" onClick={() => {
-                            if (data && data.nav) {
-                                window.open(data.nav, '_blank');
-                            } else {
-                                alert("등록된 사이트 링크가 없습니다!");
-                            }
-                        }}
-                        >내비게이션 보기</button>
                     </div>
                 </div>
+                <button className="nav-button" onClick={() => {
+                        if (data && data.nav) {
+                            setShowWebsite(!showWebsite)
+                        } else {
+                            alert("등록된 사이트 링크가 없습니다!");
+                        }
+                    }}
+                    >내비게이션 보기</button>
+
+                    {showWebsite && data.nav && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            style={{ marginTop: '40px', width: '100%', borderRadius: '16px', overflow: 'hidden', border: '1px solid #e2e8f0', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}
+                        >
+                            <div style={{ background: '#e8f5e9', padding: '10px 20px', textAlign: 'left', fontWeight: '600', color: '#2e7d32', fontSize: '14px', borderBottom: '1px solid #dcfce7' }}>
+                                {data.name}
+                            </div>
+                            <iframe
+                                src={data.nav}
+                                title={`${data.name} 웹사이트`}
+                                style={{ width: '100%', height: '600px', border: 'none', backgroundColor: '#white' }}
+                            />
+                        </motion.div>
+                    )}
             </div>
         </motion.div>
     );
