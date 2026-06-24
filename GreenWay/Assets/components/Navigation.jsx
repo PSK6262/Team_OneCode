@@ -1,18 +1,20 @@
 import { Route, Routes, Link, useNavigate } from 'react-router'
 import { Button, Spinner, Container, Nav, Navbar, Row, Col, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Navigation.css';
 import parksData from '../data/parksData.js'
 // 1페이지 Main Import
 import Main from './Main'
 // 2페이지 import
 import Trail from '../page2/Trail.jsx';
+
 function Navigation(){
     const Logo = "/images/logo.png";
     let navigate = useNavigate();
     
     return(
         <>
-            <Navbar data-bs-theme="light" style={{backgroundColor: "#FFFFFF"}}>
+            <Navbar className='navbar' data-bs-theme="light">
                 <Container>
                     <Navbar.Brand style={{ cursor: 'pointer' }} onClick={() => { navigate("/") }}>
                         <img src={Logo} className='logo' alt="로고"/>
