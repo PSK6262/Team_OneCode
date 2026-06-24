@@ -1,0 +1,14 @@
+
+h1{
+    text-align: left;
+    width: 100%;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6)
+}
+
+.inner-box{
+    background-color: antiquewhite;
+    border: 1px solid black;
+    border-radius: 16px;
+}
+
