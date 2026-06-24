@@ -8,12 +8,7 @@ const parksData = [
       "천안의 대표적인 역사 공원으로 흥타령 축제가 열리는 문화 공간입니다.",
     distance: 0,
     roadViewImage: "https://example.com",
-<<<<<<< HEAD
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRlap0rheWGo7CPG3f8uoajkI_mqj4SACWuaUpd9-oyA&s=10",
-=======
     image: "../images/id1.png",
->>>>>>> a24273b1ba550f537f50b9c896160aa6d8a55cdf
     address: "충청남도 천안시 동남구 삼룡동 306-1",
     convenience: [
       "정문 우측 대형 화장실",
@@ -46,14 +41,9 @@ const parksData = [
   {
     id: 3,
     type: "공원",
-<<<<<<< HEAD
-    name: "불당아름다운공원",
+    name: "불당아름드리공원",
     description:
       "신불당 지구 중심에 위치하여 주민들의 휴식과 가벼운 운동을 책임지는 도심 공원입니다.",
-=======
-    name: "불당아름드리공원",
-    description: "신불당 지구 중심에 위치하여 주민들의 휴식과 가벼운 운동을 책임지는 도심 공원입니다.",
->>>>>>> a24273b1ba550f537f50b9c896160aa6d8a55cdf
     distance: 0,
     roadViewImage: "https://example.com",
     image: "https://example.com",
