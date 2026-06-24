@@ -4,13 +4,7 @@
     letter-spacing: -0.3px;
 }
 .navbar_main{
-    padding:0 !important;
     background-color: #FFFFFF !important;
     border-bottom: 1px solid #f0f0f0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-.navbar_container{
-    margin: 0 !important;
-    padding-bottom: 0.25em !important;
-    padding-top:0.25em !important;
 }
