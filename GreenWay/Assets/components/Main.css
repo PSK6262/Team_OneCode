@@ -178,7 +178,7 @@ body {
     left:12vh;
     right:0;
     width:350px;
-    height:350px;
+    height:360px;
     background:white;
     border-radius:20px 20px 20px 20px;
     box-shadow:0 -4px 20px rgba(0,0,0,0.15);
@@ -195,7 +195,7 @@ body {
 }
 .infoArea{
     font-size: 15px;
-    height: 60px;
+    height: 80px;
     margin-top: 4px;
 }
 /* 안내 문구 깜빡임 효과 */

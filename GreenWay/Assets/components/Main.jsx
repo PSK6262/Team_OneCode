@@ -191,6 +191,10 @@ function Main({Data}){
                         {
                             <p style={{color:'#777'}}>{selectedPlace.address}</p>
                         }
+                        {
+                            // 일단은 2개만 출력
+                            <p>태그 : {selectedPlace.tags[0]}, {selectedPlace.tags[1]}</p>
+                        }
                         </div>
                         <button 
                             id="detail-btn" style={{
