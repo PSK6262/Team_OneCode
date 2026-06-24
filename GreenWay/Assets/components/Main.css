@@ -182,9 +182,7 @@ body {
     background:white;
     border-radius:20px 20px 20px 20px;
     box-shadow:0 -4px 20px rgba(0,0,0,0.15);
-
     z-index:1000;
-
     animation: slideUp 0.25s ease-out;
 }
 .btn_close{
@@ -197,7 +195,7 @@ body {
 }
 .infoArea{
     font-size: 15px;
-    height: 24px;
+    height: 60px;
     margin-top: 4px;
 }
 /* 안내 문구 깜빡임 효과 */

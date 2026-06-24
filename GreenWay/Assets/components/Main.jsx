@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router'
 import { ListGroup , Form } from 'react-bootstrap';
 import "./Main.css";
 import '../page2/Trail'
-import { AlignRight } from "lucide-react";
+import { AlignRight, Bold } from "lucide-react";
 
 function Main({Data}){
     const [showIntro, setShowIntro] = useState(true); // 제일 처음 화면 보이기, 이후 false
@@ -207,7 +207,7 @@ function Main({Data}){
                                 src={selectedPlace.image}
                                 style={{
                                     width: "350px",
-                                    height: "250px",
+                                    height: "200px",
                                     objectFit: "cover"
                                 }}
                                 alt={selectedPlace.name}
@@ -216,11 +216,14 @@ function Main({Data}){
                         <div className="infoArea">
                         {
                             selectedPlace.distance !== 0 &&
-                            <span>총 길이 {Number(selectedPlace.distance) / 1000} KM ,</span>
+                            <span style={{fontSize:'18px'}}>총 길이 {Number(selectedPlace.distance) / 1000} KM ,</span>
                         }
                         {
                             selectedPlace.time !== 0 &&
-                            <span> 약 {selectedPlace.time}분 소요</span>
+                            <span style={{fontSize:'18px'}}> 약 {selectedPlace.time}분 소요</span>
+                        }
+                        {
+                            <p style={{color:'#777'}}>{selectedPlace.address}</p>
                         }
                         </div>
                         <button 
