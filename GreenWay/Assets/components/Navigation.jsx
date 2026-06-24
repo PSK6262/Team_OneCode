@@ -17,7 +17,7 @@ function Navigation(){
     return(
         <>
             <Navbar className='navbar_main' data-bs-theme="light">
-                <Container>
+                <Container className='navbar_container'>
                     <Navbar.Brand style={{ cursor: 'pointer' }} onClick={() => { navigate("/") }}>
                         <img src={Logo} className='logo' alt="로고"/>
                     </Navbar.Brand>

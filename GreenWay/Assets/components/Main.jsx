@@ -162,7 +162,7 @@ function Main({Data}){
                             background:'none',
                             position: "absolute",
                             right: "1vh",
-                            top: "1.3vh",
+                            top: "1.2vh",
                             transform: "translateY(-50%)"             
                         }} onClick={()=>{
                             setSelectedPlace(null);   

@@ -174,7 +174,7 @@ body {
 }
 .showSelectedPlace{
     position: fixed;
-    bottom:12vh;
+    bottom:14vh;
     left:12vh;
     right:0;
     width:350px;
@@ -196,7 +196,7 @@ body {
 .infoArea{
     font-size: 15px;
     height: 60px;
-    margin-top: 4px;
+    margin-top: 10px;
 }
 /* 안내 문구 깜빡임 효과 */
 @keyframes blink {
