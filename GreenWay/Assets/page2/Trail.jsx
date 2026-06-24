@@ -9,19 +9,46 @@ function Trail({ Data, index }) {
     let { id } = useParams();
     let trail = Data.find((item) => item.id == id);
 
+    const renderConvenience = (convenienceList) => {
+    return (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '6px' }}>
+            {convenienceList.map((facility, fIdx) => {
+                const trimmed = facility.trim();
+                if (!trimmed) return null;
+                return (
+                    <span 
+                        key={fIdx} 
+                        style={{
+                            background: 'rgba(0, 136, 255, 0.08)',
+                            color: '#0066cc',
+                            padding: '4px 10px',
+                            borderRadius: '20px',
+                            fontSize: '12.5px',
+                            fontWeight: '600',
+                            border: '1px solid rgba(0, 136, 255, 0.15)',
+                            display: 'inline-block'
+                        }}
+                    >
+                        {trimmed}
+                    </span>
+                );
+            })}
+        </div>
+    );
+};
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 1.0, ease: "easeOut" }}
+            transition={{ duration: 2.0, ease: "easeOut" }}
             style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
         >
 
             <Container className="trail-page-container" style={{ padding: '0 20px' }}>
                 
                 <div className="trail-title-box">
-                    <h1 className="m-0 fw-bold" style={{ color: '#1a3a2a', textAlign: 'left', paddingLeft: '20px' }}>
+                    <h1 className="m-0 fw-bold" style={{ color: '#1a3a2a', textAlign: 'left', paddingLeft: '20px', fontSize:'5rem' }}>
                         {trail.name}
                     </h1>
                 </div>
@@ -35,22 +62,23 @@ function Trail({ Data, index }) {
                                 width: '100%', 
                                 maxWidth: '500px',
                                 height: '475px', 
+                                marginLeft: '50px',
                                 aspectRatio: '1/1',
                                 objectFit: 'cover', 
-                                borderRadius: '24px', 
+                                borderRadius: '32px', 
                                 boxShadow: '0 12px 36px rgba(0,0,0,0.1)'
                             }} 
                         />
                     </Col>
 
-                    <Col md={7} lg={6} className="ms-auto">
+                    <Col md={8} lg={6} className="ms-auto">
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                             
                             {[
                                 { icon: <MapPin size={20} color='orange' />, title: '주소', text: trail.address },
                                 { icon: <Sparkles size={20} color='yellowgreen' />, title: '특징', text: trail.description },
                                 { icon: <Ruler size={20} color='#4A5D4E' />, title: '산책로 길이', text: `${trail.distance}m` },
-                                { icon: <ParkingCircle size={20} color='blue' />, title: '편의 시설', text: trail.convenience },
+                                { icon: <ParkingCircle size={20} color='blue' />, title: '편의 시설', text: renderConvenience(trail.convenience) },
                                 { icon: <Clock size={20} color='green' />, title: '산책 시간', text: `${trail.time}분` }
                             ].map((item, idx) => (
                                 <div key={idx} className="glass-info-item">
