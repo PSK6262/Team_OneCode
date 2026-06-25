@@ -14,3 +14,14 @@
     padding-bottom: 0.25em !important;
     padding-top:0.25em !important;
 }
+
+@media screen and (max-width: 1023px) {
+    .navbar_main{
+        width:100%;
+    }
+}
+@media screen and (max-width: 479px){
+    .me-auto{
+        display: none;
+    }
+}

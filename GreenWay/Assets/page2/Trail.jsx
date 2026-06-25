@@ -159,84 +159,75 @@ function Trail() {
                                     {renderConvenience(data.convenience)}
                                 </div>
                             </div>
-
                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                 <Clock size={18} color='green' />
                                 <span><strong>산책 시간:</strong> {data.time}분</span>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                                <div className="comment-section" style={{ flex: '0 0 45%', background: '#white', borderRadius: '16px', padding: '24px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
+                                    <h5 style={{ fontWeight: '700', marginBottom: '16px', color: '#111' }}>🖍 한줄평 후기 ({comments.length})</h5>
 
-                <div style={{ display: 'flex',  alignItems: 'flex-start' }}>
-                    
-                    <div className="comment-section" style={{ flex: '0 0 45%', background: '#white', borderRadius: '16px', padding: '24px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
-                        <h5 style={{ fontWeight: '700', marginBottom: '16px', color: '#111' }}>🖍 한줄평 후기 ({comments.length})</h5>
-                        
-                        <div className="comment-list-container" style={{ maxHeight: '200px', overflowY: 'auto', marginBottom: '16px', paddingRight: '4px' }}>
-                            {comments.length === 0 ? (
-                                <p style={{ color: '#aaa', fontSize: '14px', textAlign: 'center', padding: '20px 0' }}>첫 번째 후기를 남겨보세요!</p>
-                            ) : (
-                                comments.map((comment) => (
-                                    <div key={comment.id} style={{ background: '#f8fafc', padding: '12px 16px', borderRadius: '8px', marginBottom: '8px', border: '1px solid #f1f5f9', fontSize: '14px', color: '#334155', textAlign: 'left' }}>
-                                        <span style={{ fontWeight: 'bold', color: 'green', marginRight: '8px' }}>walk-friend</span>
-                                        {comment.text}
+                                    <div className="comment-list-container" style={{ maxHeight: '200px', overflowY: 'auto', marginBottom: '16px', paddingRight: '4px' }}>
+                                        {comments.length === 0 ? (
+                                            <p style={{ color: '#aaa', fontSize: '14px', textAlign: 'center', padding: '20px 0' }}>첫 번째 후기를 남겨보세요!</p>
+                                        ) : (
+                                            comments.map((comment) => (
+                                                <div key={comment.id} style={{ background: '#f8fafc', padding: '12px 16px', borderRadius: '8px', marginBottom: '8px', border: '1px solid #f1f5f9', fontSize: '14px', color: '#334155', textAlign: 'left' }}>
+                                                    <span style={{ fontWeight: 'bold', color: 'green', marginRight: '8px' }}>walk-friend</span>
+                                                    {comment.text}
+                                                </div>
+                                            ))
+                                        )}
                                     </div>
-                                ))
-                            )}
-                        </div>
 
-                        <div style={{ display: 'flex', gap: '10px', alignItems: 'stretch' }}>
-                            <textarea 
-                                value={inputText}
-                                onChange={(e) => setInputText(e.target.value)}
-                                placeholder="산책로에 대한 따뜻한 후기를 익명으로 남겨주세요."
-                                style={{ flex: 1, height: '54px', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '14px', resize: 'none', outline: 'none' }}
-                            />
-                            <button 
-                                onClick={addComments}
-                                style={{ width: '80px', background: 'green', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 'bold', fontSize: '14px', cursor: 'pointer' }}
-                            >
-                                등록
-                            </button>
-                        </div>
-                    </div>
-
-                    <div style={{ flex: '1', display: 'flex', flexDirection: 'column' }}>
-                        <button 
-                            className="nav-button" 
-                            onClick={() => {
-                                if (data && data.nav) {
-                                    setShowWebsite(!showWebsite)
-                                } else {
-                                    alert("등록된 사이트 링크가 없습니다!");
-                                }
-                            }}
-                            style={{ width: '100%', padding: '14px', background: 'green', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.3s' }}
-                        >
-                        내비게이션
-                        </button>
-
-                        {showWebsite && data.nav && (
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                style={{ marginTop: '20px', width: '100%', borderRadius: '16px', overflow: 'hidden', border: '1px solid #e2e8f0', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}
-                            >
-                                <div style={{ background: '#e8f5e9', padding: '10px 20px', textAlign: 'left', fontWeight: '600', color: '#2e7d32', fontSize: '14px', borderBottom: '1px solid #dcfce7' }}>
-                                    {data.name}
+                                    <div style={{ display: 'flex', gap: '10px', alignItems: 'stretch' }}>
+                                        <textarea
+                                            value={inputText}
+                                            onChange={(e) => setInputText(e.target.value)}
+                                            placeholder="산책로에 대한 따뜻한 후기를 익명으로 남겨주세요."
+                                            style={{ flex: 1, height: '54px', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '14px', resize: 'none', outline: 'none' }}
+                                        />
+                                        <button
+                                            onClick={addComments}
+                                            style={{ width: '80px', background: 'green', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 'bold', fontSize: '14px', cursor: 'pointer' }}
+                                        >
+                                            등록
+                                        </button>
+                                    </div>
                                 </div>
-                                <iframe
-                                    src={data.nav}
-                                    title={`${data.name} 웹사이트`}
-                                    style={{ width: '100%', height: '500px', border: 'none', backgroundColor: 'white' }}
-                                />
-                            </motion.div>
-                        )}
+
+                        </div>
                     </div>
                 </div>
+
+
+                <button className="nav-button" onClick={() => {
+                    if (data && data.nav) {
+                        setShowWebsite(!showWebsite)
+                    } else {
+                        alert("등록된 사이트 링크가 없습니다!");
+                    }
+                }}
+                >내비게이션 보기</button>
+
+                {showWebsite && data.nav && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        style={{ marginTop: '40px', width: '100%', borderRadius: '16px', overflow: 'hidden', border: '1px solid #e2e8f0', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}
+                    >
+                        <div style={{ background: '#e8f5e9', padding: '10px 20px', textAlign: 'left', fontWeight: '600', color: '#2e7d32', fontSize: '14px', borderBottom: '1px solid #dcfce7' }}>
+                            {data.name}
+                        </div>
+                        <iframe
+                            src={data.nav}
+                            title={`${data.name} 웹사이트`}
+                            style={{ width: '100%', height: '600px', border: 'none', backgroundColor: '#white' }}
+                        />
+                    </motion.div>
+                )}
             </div>
         </motion.div>
+
     );
 }
 

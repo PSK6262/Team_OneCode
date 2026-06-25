@@ -28,7 +28,7 @@ function Park3() {
 
   return (
     <div className="container">
-      <div className="namebox">
+      <div className="detail-header">
         <div className="name">
           <h2>{data.name}</h2>
           <span className="tag">{data.type}</span>
@@ -47,24 +47,20 @@ function Park3() {
             <p>{data.description}</p>
           </div>
 
-          <div className="vusdml">
-            <h5 className="convenience">편의시설</h5>
+          <div className="button">
+            <button className="convenience" onClick={() => setVusdml(!vusdml)}>
+              편의시설 및 주요시설 위치 보기
+            </button>
 
-            <div className="dnlcl">
-              {data.convenience &&
-                data.convenience.map((text, idx) => (
-                  <div key={idx} className="item">
-                    {text}
-                  </div>
-                ))}
-            </div>
+            {vusdml && (
+              <div className="dnlcl">
+                <ul>
+                  {data.convenience &&
+                    data.convenience.map((text, idx) => <li> {text}</li>)}
+                </ul>
+              </div>
+            )}
           </div>
-        </div>
-
-        <div className="button1">
-          <button className="parkbtn1" onClick={() => {}}>
-            !공원 후기 및 후기 작성!
-          </button>
         </div>
       </div>
     </div>
