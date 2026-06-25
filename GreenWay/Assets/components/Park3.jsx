@@ -27,40 +27,44 @@ function Park3() {
   }
 
   return (
-    <div className="container">
-      <div className="detail-header">
-        <div className="name">
+    <div className="park-detail-container">
+      <div className="namebox">
+        <div className="parkname">
           <h2>{data.name}</h2>
           <span className="tag">{data.type}</span>
         </div>
-        <p className="address">주소: {data.address}</p>
+        <p className="parkaddress">주소: {data.address}</p>
       </div>
 
-      <div className="main">
-        <div className="img">
+      <div className="parkmain">
+        <div className="park-detail-img">
           <img src={data.image} />
         </div>
 
-        <div className="box">
-          <div className="description">
+        <div className="parkmainbox">
+          <div className="parkdescription">
             <h5> 공원 소개 </h5>
             <p>{data.description}</p>
           </div>
 
-          <div className="button">
-            <button className="convenience" onClick={() => setVusdml(!vusdml)}>
-              편의시설 및 주요시설 위치 보기
-            </button>
+          <div className="parkvusdml">
+            <h5 className="parkconvenience">편의시설</h5>
 
-            {vusdml && (
-              <div className="dnlcl">
-                <ul>
-                  {data.convenience &&
-                    data.convenience.map((text, idx) => <li> {text}</li>)}
-                </ul>
-              </div>
-            )}
+            <div className="parkdnlcl">
+              {data.convenience &&
+                data.convenience.map((text, idx) => (
+                  <div key={idx} className="parkvusdmlitem">
+                    {text}
+                  </div>
+                ))}
+            </div>
           </div>
+        </div>
+
+        <div className="parkvusdmlbutton1">
+          <button className="parkbtn1" onClick={() => {}}>
+            !공원 후기 및 후기 작성!
+          </button>
         </div>
       </div>
     </div>
