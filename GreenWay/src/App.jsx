@@ -6,12 +6,11 @@ import Navigation from '../Assets/components/Navigation.jsx'
 import './App.css'
 
 function App() {
-
   return (
     <>
       <Navigation/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
