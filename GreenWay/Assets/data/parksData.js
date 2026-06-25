@@ -4,12 +4,8 @@ const parksData = [
     id: 1,
     type: "공원",
     name: "천안삼거리공원",
-<<<<<<< HEAD
     description:
-      "천안의 대표적인 역사 공원으로 흥타령 축제가 열리는 문화 공간입니다.",
-=======
-    description: "천안의 대표적인 역사 공원으로 천안흥타령 축제가 열리는 문화 공간입니다.",
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+      "천안의 대표적인 역사 공원으로 천안흥타령 축제가 열리는 문화 공간입니다.",
     distance: 0,
     roadViewImage: "https://example.com",
     image: "/images/id1.png",
@@ -17,28 +13,21 @@ const parksData = [
     convenience: [
       "정문 우측 대형 화장실",
       "공원 중앙 잔디광장 옆 매점",
-      "서문 주차장 근처 음수대",
+      "서문 주차장 근처 음음수대",
     ],
     lat: 36.7891,
     lng: 127.1664,
     tags: ["화장실", "매점", "주차장", "잔디광장"],
-<<<<<<< HEAD
-=======
-    time: 0
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 0,
+    nav: "https://map.naver.com/p/directions/-/3zpEf5,2AfbxN,%EC%B2%9C%EC%95%88%EC%82%BC%EA%B1%B0%EB%A6%AC%EA%B3%B5%EC%9B%90,13192190,PLACE_POI/-/transit?c=13.00,0,0,0,dh",
   },
   {
     id: 2,
     type: "산책로",
     name: "태조산 솔바람길",
-<<<<<<< HEAD
     description:
-      "소나무 숲길을 따라 걸으며 천안 시내를 한눈에 내려다볼 수 있는 힐링 코스입니다.",
-    distance: 3500,
-=======
-    description: "소나무 숲길을 따라 걸으며 천안 시내를 한눈에 내려다볼 수 있는 힐링 코스 입니다.",
+      "소나무 숲길을 따라 걸으며 천안 시내를 한눈에 내려다볼 수 있는 힐링 코스 입니다.",
     distance: 6730,
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
     roadViewImage: "https://example.com",
     image: "/images/id2.PNG",
     address: "충청남도 천안시 동남구 유량동 산1-1",
@@ -50,10 +39,8 @@ const parksData = [
     lat: 36.8194,
     lng: 127.1952,
     tags: ["화장실", "주차장", "벤치", "흙먼지털이기"],
-<<<<<<< HEAD
-=======
-    time: 50
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 50,
+    nav: "https://map.naver.com/p/directions/-/3zr94m,2AgGfO,%ED%83%9C%EC%A1%B0%EC%82%B0,13491062,PLACE_POI/-/transit?c=13.00,0,0,0,dh",
   },
   {
     id: 3,
@@ -73,23 +60,16 @@ const parksData = [
     lat: 36.8122,
     lng: 127.1068,
     tags: ["화장실", "놀이터", "음음수대", "야외운동기구"],
-<<<<<<< HEAD
-=======
-    time: 0
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 0,
+    nav: "https://map.naver.com/p/directions/-/3zmVHz,2AgwFa,%EC%95%84%EB%A6%84%EB%93%9C%EB%A6%AC%EA%B3%B5%EC%9B%90,38003904,PLACE_POI/-/transit?c=14.00,0,0,0,dh",
   },
   {
     id: 4,
     type: "산책로",
     name: "천안천 수변산책로",
-<<<<<<< HEAD
     description:
       "도심을 가로지르는 천안천을 따라 잘 정비된 평지형 보행자 전용 산책로입니다.",
-    distance: 5200,
-=======
-    description: "도심을 가로지르는 천안천을 따라 잘 정비된 평지형 보행자 전용 산책로입니다.",
     distance: 8800,
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
     roadViewImage: "https://example.com",
     image: "/images/id4.jpg",
     address: "충청남도 천안시 서북구 쌍용동 494-20",
@@ -97,23 +77,16 @@ const parksData = [
     lat: 36.7985,
     lng: 127.1241,
     tags: ["벤치", "자전거도로", "반려동물동반"],
-<<<<<<< HEAD
-=======
-    time: 75
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 75,
+    nav: "https://map.naver.com/p/directions/-/3zoAN4,2Ag0yg,%EB%B4%89%EB%AA%85%EA%B5%90,17637650,PLACE_POI/-/transit?c=16.56,0,0,0,dh",
   },
   {
     id: 5,
     type: "공원",
-    name: "성성호수공원 (업성저수지)",
-<<<<<<< HEAD
+    name: "성성호수공원",
     description:
       "생태 자원을 보존하며 수변 데크길이 아름답게 조성된 천안의 새로운 핫플레이스 공원입니다.",
     distance: 0,
-=======
-    description: "생태 자원을 보존하며 수변 데크길이 아름답게 조성된 천안의 새로운 핫플레이스 공원입니다.",
-    distance: 5000,
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
     roadViewImage: "https://example.com",
     image: "/images/id5.PNG",
     address: "충청남도 천안시 서북구 성성동 120",
@@ -125,10 +98,8 @@ const parksData = [
     lat: 36.8453,
     lng: 127.1405,
     tags: ["화장실", "주차장", "카페", "전망대", "수유실"],
-<<<<<<< HEAD
-=======
-    time: 0
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 0,
+    nav: "https://map.naver.com/p/directions/-/3zojRz,2AhVUk,%EC%84%B1%EC%84%B1%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90,17671487,PLACE_POI/-/transit?c=14.45,0,0,0,dh",
   },
   {
     id: 6,
@@ -144,22 +115,15 @@ const parksData = [
     lat: 36.8471,
     lng: 127.1442,
     tags: ["벤치", "야간조명", "포토존"],
-<<<<<<< HEAD
-=======
-    time: 60
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 60,
+    nav: "https://map.naver.com/p/directions/-/3znYwP,2AhSOu,%EC%B2%9C%EC%95%88%EC%8B%9C%20%EC%84%B1%EC%84%B1%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90%20%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%84%BC%ED%84%B0,1508012337,PLACE_POI/-/transit?c=14.00,0,0,0,dh",
   },
   {
     id: 7,
     type: "공원",
-<<<<<<< HEAD
-    name: "신방체육공원",
+    name: "신방공원",
     description:
       "다양한 체육 시설과 넓은 잔디밭이 있어 가족 단위 방문객과 운동 마니아들이 찾는 공원입니다.",
-=======
-    name: "신방공원",
-    description: "다양한 체육 시설과 넓은 잔디밭이 있어 가족 단위 방문객과 운동 마니아들이 찾는 공원입니다.",
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
     distance: 0,
     roadViewImage: "https://example.com",
     image: "/images/id7.JPG",
@@ -172,23 +136,16 @@ const parksData = [
     lat: 36.7812,
     lng: 127.1265,
     tags: ["화장실", "주차장", "매점", "축구장", "농구장"],
-<<<<<<< HEAD
-=======
-    time: 0
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 0,
+    nav: "https://map.naver.com/p/directions/-/3znEvx,2AfeI5,%EC%8B%A0%EB%B0%A9%EC%89%BC%ED%84%B0,1932805102,PLACE_POI/-/transit?c=14.00,0,0,0,dh",
   },
   {
     id: 8,
     type: "산책로",
     name: "원성천 벚꽃길",
-<<<<<<< HEAD
     description:
       "봄이면 벚꽃이 만개하여 환상적인 터널을 이루는 천안 주민들의 로컬 산책 명소입니다.",
-    distance: 2800,
-=======
-    description: "봄이면 벚꽃이 만개하여 환상적인 터널을 이루는 천안 주민들의 로컬 산책 명소입니다.",
     distance: 1500,
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
     roadViewImage: "https://example.com",
     image: "/images/id8.jpg",
     address: "충청남도 천안시 동남구 원성동 555-1",
@@ -196,10 +153,8 @@ const parksData = [
     lat: 36.8041,
     lng: 127.1612,
     tags: ["화장실", "벤치", "벚꽃명소"],
-<<<<<<< HEAD
-=======
-    time: 40
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 40,
+    nav: "https://map.naver.com/p/directions/-/3zp6k4,2Ag2dw,%EC%9B%90%EC%84%B1%EC%A0%9C2%EA%B5%90,17629540,PLACE_POI/-/transit?c=14.00,0,0,0,dh",
   },
   {
     id: 9,
@@ -219,22 +174,15 @@ const parksData = [
     lat: 36.8169,
     lng: 127.1725,
     tags: ["화장실", "주차장", "반려견놀이터", "공연장"],
-<<<<<<< HEAD
-=======
-    time: 0
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 0,
+    nav: "https://map.naver.com/p/directions/-/3zpnh6,2AgTT9,%EB%8F%84%EC%86%94%EA%B4%91%EC%9E%A5,1618335824,PLACE_POI/-/transit?c=17.00,0,0,0,dh",
   },
   {
     id: 10,
     type: "산책로",
-<<<<<<< HEAD
-    name: "각원사 청동좌불상 산책길",
+    name: "각원사",
     description:
       "웅장한 청동대불을 지나 산사의 고즈넉함과 계절의 변화를 느끼며 걷는 숲속 산책로입니다.",
-=======
-    name: "각원사",
-    description: "웅장한 청동대불을 지나 산사의 고즈넉함과 계절의 변화를 느끼며 걷는 숲속 산책로입니다.",
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
     distance: 1500,
     roadViewImage: "https://example.com",
     image: "/images/id10.webp",
@@ -247,10 +195,8 @@ const parksData = [
     lat: 36.8322,
     lng: 127.1991,
     tags: ["화장실", "주차장", "매점", "사찰"],
-<<<<<<< HEAD
-=======
-    time: 20
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 20,
+    nav: "https://map.naver.com/p/directions/-/3zqQVI,2AhjMU,%EA%B0%81%EC%9B%90%EC%82%AC,11664082,PLACE_POI/-/transit?c=17.00,0,0,0,dh",
   },
   {
     id: 11,
@@ -269,10 +215,8 @@ const parksData = [
     lat: 36.7955,
     lng: 127.1188,
     tags: ["화장실", "운동기구", "지압보도"],
-<<<<<<< HEAD
-=======
-    time: 0
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 0,
+    nav: "https://map.naver.com/p/directions/-/3zo1WV,2Agl71,%EC%8C%8D%EC%9A%A9%EA%B3%B5%EC%9B%90,1027058526,PLACE_POI/-/transit?c=17.00,0,0,0,dh",
   },
   {
     id: 12,
@@ -291,10 +235,8 @@ const parksData = [
     lat: 36.8151,
     lng: 127.1215,
     tags: ["벤치", "흙먼지털이기", "운동기구"],
-<<<<<<< HEAD
-=======
-    time: 65
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 65,
+    nav: "https://map.naver.com/p/directions/-/3znPYf,2AhfUw,%EC%B2%9C%EC%95%88%EB%B0%B1%EC%84%9D%EC%95%84%EC%9D%B4%ED%8C%8C%ED%81%AC%EC%95%84%ED%8C%8C%ED%8A%B8,17666067,PLACE_POI/-/transit?c=17.00,0,0,0,dh",
   },
   {
     id: 13,
@@ -314,24 +256,16 @@ const parksData = [
     lat: 36.7865,
     lng: 127.1555,
     tags: ["화장실", "주차장", "음악분수", "벤치"],
-<<<<<<< HEAD
-=======
-    time: 0
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 0,
+    nav: "https://map.naver.com/p/directions/-/3zoQBT,2Afm57,%EC%B2%AD%EC%88%98%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90,1339828853,PLACE_POI/-/transit?c=17.00,0,0,0,dh",
   },
   {
     id: 14,
     type: "산책로",
-<<<<<<< HEAD
-    name: "단대호수 (천호지) 둘레길",
-    description:
-      "버스커버스커 노래로 유명한 '단대호수'를 감싸고 도는 야경이 무척 아름다운 산책로입니다.",
-    distance: 2300,
-=======
     name: "천호지 둘레길",
-    description: "버스커버스커 노래로 유명한 '단대호수(천호지)'를 감싸고 도는 야경이 무척 아름다운 산책로 입니다.",
+    description:
+      "버스커버스커 노래로 유명한 '단대호수(천호지)'를 감싸고 도는 야경이 무척 아름다운 산책로 입니다.",
     distance: 2530,
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
     roadViewImage: "https://example.com",
     image: "/images/id14.png",
     address: "충청남도 천안시 동남구 안서동 526-1",
@@ -342,25 +276,16 @@ const parksData = [
     lat: 36.8288,
     lng: 127.1772,
     tags: ["화장실", "주차장", "편의점", "카페", "야간조명"],
-<<<<<<< HEAD
-  },
-  {
-    id: 15,
-    type: "공원",
-    name: "직산삼은저수지 생활체육공원",
-    description:
-      "직산 지역 주민들의 건강 증진을 위해 저수지 주변을 체육 공간으로 재탄생시킨 공원입니다.",
-    distance: 0,
-=======
-    time: 30
+    time: 30,
+    nav: "https://map.naver.com/p/directions/-/3zpGpD,2AhgpD,%EC%B2%9C%ED%98%B8%EC%A7%80,1133933276,PLACE_POI/-/transit?c=13.00,0,0,0,dh",
   },
   {
     id: 15,
     type: "산책로",
     name: "직산삼은저수지 산책로",
-    description: "직산 지역 주민들의 건강 증진을 위해 저수지 주변을 체육 공간으로 재탄생시킨 공원입니다.",
+    description:
+      "직산 지역 주민들의 건강 증진을 위해 저수지 주변을 체육 공간으로 재탄생시킨 공원입니다.",
     distance: 1300,
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
     roadViewImage: "https://example.com",
     image: "/images/id15.jpg",
     address: "충청남도 천안시 서북구 직산읍 삼은리 510",
@@ -372,21 +297,15 @@ const parksData = [
     lat: 36.8778,
     lng: 127.1502,
     tags: ["화장실", "주차장", "운동기구", "족구장"],
-<<<<<<< HEAD
-=======
-    time: 20
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 20,
+    nav: "https://map.naver.com/p/directions/-/3zoCra,2AiRoz,%EC%A7%81%EC%82%B0%EC%97%AD%201%ED%98%B8%EC%84%A0,1406,SUBWAY_STATION/-/transit?c=17.00,0,0,0,dh",
   },
   {
     id: 16,
     type: "산책로",
     name: "매봉산 자락길",
-<<<<<<< HEAD
     description:
-      "동남구 주민들이 주로 찾는 숨겨진 보석 같은 산책로로, 조용히 사색하며 걷기 좋습니다.",
-=======
-    description: "동남구 주민들이 주로 찾는 숨겨진 보석 같은 산책로, 조용히 사색하며 걷기 좋습니다.",
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+      "동남구 주민들이 주로 찾는 숨겨진 보석 같은 산책로, 조용히 사색하며 걷기 좋습니다.",
     distance: 2100,
     roadViewImage: "https://example.com",
     image: "/images/id16.jpg",
@@ -395,10 +314,8 @@ const parksData = [
     lat: 36.7861,
     lng: 127.1321,
     tags: ["벤치", "정자"],
-<<<<<<< HEAD
-=======
-    time: 30
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 30,
+    nav: "https://map.naver.com/p/directions/-/3zovtx,2AgfyT,%EC%84%9C%EB%B6%80%EC%97%AD1%EA%B8%B8,19467638,PLACE_POI/-/transit?c=17.00,0,0,0,dh",
   },
   {
     id: 17,
@@ -418,10 +335,8 @@ const parksData = [
     lat: 36.8282,
     lng: 127.1495,
     tags: ["화장실", "놀이터", "벤치"],
-<<<<<<< HEAD
-=======
-    time: 0
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 0,
+    nav: "https://map.naver.com/p/directions/-/3znxcy,2AfBgO,%EB%B0%A9%EC%95%84%EB%8B%A4%EB%A6%AC%EA%B3%B5%EC%9B%90,17674976,PLACE_POI/-/transit?c=17.00,0,0,0,dh",
   },
   {
     id: 18,
@@ -441,10 +356,8 @@ const parksData = [
     lat: 36.7844,
     lng: 127.2231,
     tags: ["화장실", "주차장", "매점", "수유실", "단풍명소"],
-<<<<<<< HEAD
-=======
-    time: 45
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
+    time: 45,
+    nav: "https://map.naver.com/p/directions/-/3zrYuJ,2Afakx,%EB%8F%85%EB%A6%BD%EA%B8%B0%EB%85%90%EA%B4%80,11620331,PLACE_POI/-/transit?c=17.00,0,0,0,dh",
   },
   {
     id: 19,
@@ -460,27 +373,9 @@ const parksData = [
     lat: 36.8229,
     lng: 127.1298,
     tags: ["화장실", "놀이터", "바닥분수"],
-<<<<<<< HEAD
+    time: 0,
+    nav: "https://map.naver.com/p/directions/-/3znLYP,2AgO3o,%EB%B0%B1%EC%84%9D%EC%A2%85%ED%95%A9%EC%83%81%EA%B0%80,17666931,PLACE_POI/-/transit?c=17.00,0,0,0,dh",
   },
-  {
-    id: 20,
-    type: "산책로",
-    name: "풍서천 자전거 및 보행 산책로",
-    description:
-      "풍세면 일대의 시골 풍경을 감상하며 여유롭게 자전거를 타거나 걸을 수 있는 긴 산책로입니다.",
-    distance: 6800,
-    roadViewImage: "https://example.com",
-    image: "https://example.com",
-    address: "충청남도 천안시 동남구 풍세면 풍서리 401-4",
-    convenience: ["하천변 진입 데크", "중간 쉼터 파고라 원두막"],
-    lat: 36.7455,
-    lng: 127.1192,
-    tags: ["벤치", "자전거도로", "외곽산책"],
-  },
-=======
-    time: 0
-  }
->>>>>>> d57737ada14b437a1e3feae757a367f2d4f6b484
 ];
 
 export default parksData;
