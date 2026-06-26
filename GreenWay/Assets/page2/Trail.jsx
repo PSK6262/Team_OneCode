@@ -11,6 +11,7 @@ function Trail() {
     const [ data, setData ] = useState(null);
     const [ vusdml, setVusdml ] = useState(false);
     const [ showWebsite, setShowWebsite ] = useState(false);
+    const [ showNotice, setShowNotice ] = useState(false);
     let [ upCount, setUpCount ] = useState(() => {
         const saveUpCount = localStorage.getItem(`trail_up_${id}`)
         return saveUpCount ? parseInt(saveUpCount, 10) : 0;
@@ -174,11 +175,11 @@ function Trail() {
                         </div>
 
                         <div className="vote-bar">
-                            <span style={{ fontSize: '20px', fontWeight: '700', color: '#334155'}}>
+                            <span style={{ fontSize: '20px', fontWeight: '700', color: '#334155' }}>
                                 😆 이 산책로, 어떠셨나요?
                             </span>
 
-                            <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginLeft: '50px', marginTop:'15px'}}>
+                            <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginLeft: '50px', marginTop: '15px' }}>
                                 <button
                                     onClick={() => setUpCount(upCount + 1)}
                                     style={{ display: 'flex', alignItems: 'center', gap: '6px', background: '#f0fdf4', border: '1px solid #bbf7d0', padding: '6px 14px', borderRadius: '20px', cursor: 'pointer' }}
@@ -199,17 +200,32 @@ function Trail() {
                             </div>
 
                         </div>
-                        <p style={{ textAlign: 'center' }}><AlertTriangle size={14} />주의 사항<AlertTriangle size={14} /></p>
-                        <ol>
-                            <li>보행 중 스마트폰을 보면 시야각이 좁아져 주변 위험 상황(자전거, 장애물 등)을 감지하기 어려우며, 아름다운 자연환경을 느낄 수 없습니다!</li>
-                            <li>주변 소리(자동차 경적, 자전거 벨 소리 등)를 들을 수 있도록 이어폰 볼륨을 낮추거나 한쪽 귀를 열어두세요.</li>
-                            <li>산책로나 보도에서는 우측통행을 기본으로 하여 마주 오는 사람과의 충돌을 방지합니다.</li>
-                            <li>어두운 시간대에는 운전자나 자전거 운전자가 쉽게 식별할 수 있도록 밝은색 옷을 입거나 야광 밴드, 휴대용 플래시를 지참하세요.</li>
-                            <li>산책 전후로 가벼운 스트레칭을 통해 관절과 근육을 풀어주어 부상을 예방합니다.</li>
-                            <li>발을 안정적으로 잡아주고 충격을 흡수할 수 있는 운동화나 워킹화를 착용하세요. 슬리퍼나 샌들은 발목 부상의 위험이 높습니다.</li>
-                            <li>본인의 체력 수준에 맞춰 걷기 속도와 거리를 조절하고, 피로감이 느껴지면 즉시 휴식을 취해야 합니다.</li>
-                        </ol>
+                        <div style={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => {
+                            setShowNotice(!showNotice)
+                        }}><AlertTriangle size={14} />주의 사항<AlertTriangle size={14} />
+                            <span>{showNotice ? '▲' : '▼'}</span>
+                        </div>
+                        {showNotice && (
+                            <div style={{
+                                marginTop: '14px',
+                                textAlign: 'left',
+                                padding: '16px',
+                                background: '#f8fafc',
+                                borderRadius: '12px',
+                                border: '1px solid #e2e8f0'
+                            }}>
+                                <ol>
+                                    <li>보행 중 스마트폰을 보면 시야각이 좁아져 주변 위험 상황(자전거, 장애물 등)을 감지하기 어려우며, 아름다운 자연환경을 느낄 수 없습니다!</li>
+                                    <li>주변 소리(자동차 경적, 자전거 벨 소리 등)를 들을 수 있도록 이어폰 볼륨을 낮추거나 한쪽 귀를 열어두세요.</li>
+                                    <li>산책로나 보도에서는 우측통행을 기본으로 하여 마주 오는 사람과의 충돌을 방지합니다.</li>
+                                    <li>어두운 시간대에는 운전자나 자전거 운전자가 쉽게 식별할 수 있도록 밝은색 옷을 입거나 야광 밴드, 휴대용 플래시를 지참하세요.</li>
+                                    <li>산책 전후로 가벼운 스트레칭을 통해 관절과 근육을 풀어주어 부상을 예방합니다.</li>
+                                    <li>발을 안정적으로 잡아주고 충격을 흡수할 수 있는 운동화나 워킹화를 착용하세요. 슬리퍼나 샌들은 발목 부상의 위험이 높습니다.</li>
+                                    <li>본인의 체력 수준에 맞춰 걷기 속도와 거리를 조절하고, 피로감이 느껴지면 즉시 휴식을 취해야 합니다.</li>
+                                </ol>
 
+                            </div>
+                        )}
                     </div>
 
 
@@ -249,7 +265,7 @@ function Trail() {
                                 >
                                     ▶ 추천 플레이리스트(유튜브)
                                 </button>
-                                <div className="comment-section" style={{ flex: '0 0 45%', borderRadius: '16px', padding: '24px', border: '1px solid #e2e8f0', boxShadow: 'rgba(0,0,0,0.05)', marginTop: '25px', borderColor: '#A1887F',transition: 'all 0.3s ease' }}>
+                                <div className="comment-section" style={{ flex: '0 0 45%', borderRadius: '16px', padding: '24px', border: '1px solid #e2e8f0', boxShadow: 'rgba(0,0,0,0.05)', marginTop: '25px', borderColor: '#A1887F', transition: 'all 0.3s ease' }}>
                                     <h5 style={{ fontWeight: '700', marginBottom: '16px', color: '#111' }}>🖍 한줄평 후기 ({comments.length})</h5>
 
                                     <div className="comment-list-container" style={{ maxHeight: '200px', overflowY: 'auto', marginBottom: '16px', paddingRight: '4px' }}>
@@ -270,7 +286,7 @@ function Trail() {
                                             value={inputText}
                                             onChange={(e) => setInputText(e.target.value)}
                                             placeholder="산책로에 대한 따뜻한 후기를 익명으로 남겨주세요."
-                                            style={{ flex: 1, height: '54px', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '14px', resize: 'none', outline: 'none' ,transition: 'all 0.2s ease-in-out'}}
+                                            style={{ flex: 1, height: '54px', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '14px', resize: 'none', outline: 'none', transition: 'all 0.2s ease-in-out' }}
                                         />
                                         <button
                                             onClick={addComments}
