@@ -1,6 +1,6 @@
 import { href, useParams } from 'react-router'
 import { Container, Row, Col } from 'react-bootstrap';
-import { MapPin, Sparkles, Ruler, ParkingCircle, Clock, Star, ThumbsUp, ThumbsDown } from "lucide-react";
+import { MapPin, Sparkles, Ruler, ParkingCircle, Clock, ThumbsUp, ThumbsDown, AlertTriangle } from "lucide-react";
 import './Trail.css';
 import parksData from '../data/parksData.js';
 import { motion } from 'framer-motion';
@@ -193,12 +193,22 @@ function Trail() {
                                     <ThumbsDown size={20} color='#dc2626' fill='#dc2626' />
                                     <strong style={{ color: '#dc2626', fontSize: '13.5px' }}>{downCount}</strong>
                                 </button>
+                                <button className="share-btn" style={{ backgroundColor: '#f1f5f9', border: 'none', marginLeft: '25px', borderRadius: '12px', width: '200px' }}>
+                                    🖨️ 공유하기
+                                </button>
                             </div>
-                        </div>
 
-                        <button className="share-btn" style={{ marginLeft:'25px', borderRadius: '15px' , width :'400px'}}>
-                            🖨️ 공유하기
-                        </button>
+                        </div>
+                        <p style={{ textAlign: 'center' }}><AlertTriangle size={14} />주의 사항<AlertTriangle size={14} /></p>
+                        <ol>
+                            <li>보행 중 스마트폰을 보면 시야각이 좁아져 주변 위험 상황(자전거, 장애물 등)을 감지하기 어려우며, 아름다운 자연환경을 느낄 수 없습니다!</li>
+                            <li>주변 소리(자동차 경적, 자전거 벨 소리 등)를 들을 수 있도록 이어폰 볼륨을 낮추거나 한쪽 귀를 열어두세요.</li>
+                            <li>산책로나 보도에서는 우측통행을 기본으로 하여 마주 오는 사람과의 충돌을 방지합니다.</li>
+                            <li>어두운 시간대에는 운전자나 자전거 운전자가 쉽게 식별할 수 있도록 밝은색 옷을 입거나 야광 밴드, 휴대용 플래시를 지참하세요.</li>
+                            <li>산책 전후로 가벼운 스트레칭을 통해 관절과 근육을 풀어주어 부상을 예방합니다.</li>
+                            <li>발을 안정적으로 잡아주고 충격을 흡수할 수 있는 운동화나 워킹화를 착용하세요. 슬리퍼나 샌들은 발목 부상의 위험이 높습니다.</li>
+                            <li>본인의 체력 수준에 맞춰 걷기 속도와 거리를 조절하고, 피로감이 느껴지면 즉시 휴식을 취해야 합니다.</li>
+                        </ol>
 
                     </div>
 
@@ -213,24 +223,33 @@ function Trail() {
 
                             <div className="dnlcl">
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
-                                    <Ruler size={18} color='#4A5D4E' />
-                                    <span><strong>산책로 길이: </strong> {data.distance}m</span>
+                                    <Ruler size={20} className="d-flex align-items-center gap-5" color='#4A5D4E' />
+                                    <span><div className='m-name'>산책로 길이 </div> {data.distance}m</span>
                                 </div>
 
                                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px', flexDirection: 'column', marginBottom: '14px' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                        <ParkingCircle size={18} color='blue' />
-                                        <strong>편의 시설</strong>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                                        <ParkingCircle className="d-flex align-items-center gap-2" size={20} color='blue' />
+                                        <div className="m-name">편의 시설</div>
                                     </div>
                                     <div style={{ paddingLeft: '26px', width: '100%' }}>
                                         {renderConvenience(data.convenience)}
                                     </div>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                    <Clock size={18} color='green' />
-                                    <span><strong>산책 시간: </strong> {data.time}분</span>
+                                    <Clock className="d-flex align-items-center gap-2" size={20} color='green' />
+                                    <span><div className='m-name'>산책 시간</div> {data.time}분</span>
                                 </div>
-                                <div className="comment-section" style={{ flex: '0 0 45%', background: '#white', borderRadius: '16px', padding: '24px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
+
+                                <button
+                                    className="music-button"
+                                    onClick={() => {
+                                        window.open("https://www.youtube.com/watch?v=7E74fH0Xoew&list=PLci6UGec4X3g");
+                                    }}
+                                >
+                                    ▶ 추천 플레이리스트(유튜브)
+                                </button>
+                                <div className="comment-section" style={{ flex: '0 0 45%', borderRadius: '16px', padding: '24px', border: '1px solid #e2e8f0', boxShadow: 'rgba(0,0,0,0.05)', marginTop: '25px', borderColor: '#A1887F' }}>
                                     <h5 style={{ fontWeight: '700', marginBottom: '16px', color: '#111' }}>🖍 한줄평 후기 ({comments.length})</h5>
 
                                     <div className="comment-list-container" style={{ maxHeight: '200px', overflowY: 'auto', marginBottom: '16px', paddingRight: '4px' }}>
@@ -238,7 +257,7 @@ function Trail() {
                                             <p style={{ color: '#aaa', fontSize: '14px', textAlign: 'center', padding: '20px 0' }}>첫 번째 후기를 남겨보세요!</p>
                                         ) : (
                                             comments.map((comment) => (
-                                                <div key={comment.id} style={{ background: '#f8fafc', padding: '12px 16px', borderRadius: '8px', marginBottom: '8px', border: '1px solid #f1f5f9', fontSize: '14px', color: '#334155', textAlign: 'left' }}>
+                                                <div key={comment.id} style={{ background: '#f8fafc', padding: '12px 16px', borderRadius: '8px', border: '1px solid #f1f5f9', fontSize: '14px', color: '#334155', textAlign: 'left' }}>
                                                     <span style={{ fontWeight: 'bold', color: 'green', marginRight: '8px' }}>walk-friend</span>
                                                     {comment.text}
                                                 </div>
@@ -274,7 +293,6 @@ function Trail() {
                             alert("등록된 사이트 링크가 없습니다!");
                         }
                     }}
-                    style={{ marginTop: '20px' }}
                 >
                     네비게이션
                 </button>
