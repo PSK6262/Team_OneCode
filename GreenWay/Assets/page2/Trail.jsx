@@ -24,6 +24,11 @@ function Trail() {
     const [ cLat, setCLat ] = useState(null);
     const [ cLng, setCLng ] = useState(null);
     const [ navUrl, setNavUrl ] = useState("");
+    const [ star, setStar ] = useState(() => {
+
+    return localStorage.getItem(`favorite_${id}`) === 'true';
+
+    });
     const navRef = useRef(null);
     useEffect(() => {
         const trail = parksData.find((item) => item.id == id);
@@ -70,6 +75,18 @@ function Trail() {
             )
         }
     }, [])
+
+    useEffect(() => {
+        if (!data) return;
+
+        const starKey = `favorite_${data.id}`;
+
+        if (star) {
+            localStorage.setItem(starKey, 'true');
+        } else {
+            localStorage.removeItem(starKey);
+        }
+    }, [star, data]);
 
     useEffect(() => {
         if (data && data.nav) {
@@ -205,6 +222,12 @@ function Trail() {
                                     <ThumbsDown size={18} color='#dc2626' fill='#dc2626' />
                                     <strong style={{ color: '#dc2626', fontSize: '13px' }}>{downCount}</strong>
                                 </button>
+
+                                <button onClick={() =>
+                                    setStar(!star)}
+                                    style={{ color: star ? "gold" : "gray", border:'none'}}>
+                                        ★
+                                </button>
                                 <button className="share-btn" onClick={shareLink}
                                     style={{ backgroundColor: '#f1f5f9', border: 'none', marginLeft: '25px', borderRadius: '12px', width: '200px' }}>
                                     🖨️ 공유하기
@@ -251,7 +274,7 @@ function Trail() {
 
                         <div className="box" style={{ width: '100%' }}>
                             <div className="description">
-                                <h5> 소개 </h5>
+                                <h3>    소개 </h3>
                                 <p>{data.description}</p>
                             </div>
 

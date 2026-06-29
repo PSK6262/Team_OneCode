@@ -1,6 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Nanum+Myeongjo&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Jua&display=swap');
 .t-container {
     max-width: 1000px;
     margin: auto;
@@ -26,7 +24,7 @@
 }
 
 .tag {
-    font-size: 13px;
+    font-size: 10px;
     color: #2e7d32;
     background: #e8f5e9;
     padding: 4px 10px;
@@ -100,9 +98,12 @@
     text-align: left;
 }
 
-.description h5 {
-    font-weight: 700;
-    margin-bottom: 8px;
+.description *{
+    font-family: 'Jua', sans-serif !important;
+}
+
+.description p{
+    font-size : 20px;
 }
 
 .dnlcl {
