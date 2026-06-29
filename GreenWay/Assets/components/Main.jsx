@@ -26,6 +26,7 @@ function Main({Data,showIntro,setShowIntro}){
     const [distance, setDistance] = useState(0);
     const [fav, setFav] = useState([]);
     const navigate = useNavigate();
+
     // Fav 버튼 클릭시 작동
     const changeFav = () =>{
         const isFavorite = Data.filter((item)=>{
@@ -34,6 +35,7 @@ function Main({Data,showIntro,setShowIntro}){
         })
         setFav(isFavorite);
     }
+
     // 오른쪽 Group에서 보여줄 것, true인것만 표현
     const filteredData = Data.filter((item) => {
         const Favorite = localStorage.getItem(`favorite_${item.id}`);
@@ -45,6 +47,7 @@ function Main({Data,showIntro,setShowIntro}){
         }
         return true;
     });
+
     // Group에서 새로운 위치를 찍으면 이동한다.
     const moveMap = (place) => { 
         if (!mapRef.current) return;
@@ -58,15 +61,19 @@ function Main({Data,showIntro,setShowIntro}){
         if(moveLocation !== null) {
                 mapRef.current.panTo(moveLocation); // 천천히 이동
                 mapRef.current.setZoom(15);
+                
                 // 기존 마커 지우기
                 if (markerRef.current) {
                     markerRef.current.setMap(null);
                 }
+                
                 // 새 마커 만들기
                 markerRef.current = new window.naver.maps.Marker({
                     position: moveLocation,
                     map: mapRef.current
                 });
+                
+                // 좋은 구조는 아님 
                 setTimeout(() => {
                 const btn = document.getElementById("detail-btn");
                 if (!btn) return;
@@ -85,10 +92,12 @@ function Main({Data,showIntro,setShowIntro}){
             }, 100);
         }
     };   
+
     // Fav 버튼 이벤트
     useEffect(()=>{
         changeFav();
     },[Data])
+
     // 마커 표시
     useEffect(() => {
         if(showCurrentPlace){
@@ -100,6 +109,7 @@ function Main({Data,showIntro,setShowIntro}){
             }
         }
     },[showCurrentPlace,currentLat,currentLng])
+
     // 네이버 지도 표시 (API 사용)
     useEffect(() => {
         if (!window.naver) return;
@@ -115,6 +125,7 @@ function Main({Data,showIntro,setShowIntro}){
             mapOptions
         );
     }, []); 
+
     // 거리 표시용  
     useEffect(()=> { 
         if(currentLat && currentLng && selectedPlace){
@@ -125,6 +136,7 @@ function Main({Data,showIntro,setShowIntro}){
             setDistance(mapRef.current.getProjection().getDistance(Departure,Destination));
         }
     },[selectedPlace,currentLat,currentLng])
+
     // 키보드 ESC 누를 시 정보창 꺼짐
     useEffect(() => {
         if (!selectedPlace) return;
@@ -139,6 +151,7 @@ function Main({Data,showIntro,setShowIntro}){
             window.removeEventListener("keydown", handleKeyDown);
         };
     }, [selectedPlace]);
+    
     // 현재 위치 반환 코드 (HTML5 Geolocation API)
     // HTML5 Geolocation API는 브라우저 내장이므로 무료.
     const getBrowserLocation = () => {

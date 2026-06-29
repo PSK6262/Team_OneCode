@@ -291,8 +291,18 @@ body {
     font-size:18px;
 }
 .miniViewTitlePlace{
+    width:85%;
     font-size:16px;
     font-weight:bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 2줄까지만 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding-left:24px;
+    overflow-wrap: break-word;
 }
 .btn_close{
     border:none;
@@ -355,7 +365,8 @@ body {
         top: 45%;
         left: 45%;
     }
-    .showSelectedPlace.currentPlaceTypeTrail{
+    .showSelectedPlace.currentPlaceTypeTrail , .showSelectedPlace.currentPlaceBtnOn , 
+    .showSelectedPlace.currentPlaceTypeTrail.currentPlaceBtnOn{
         height:100%;
     }
     .infoArea{
