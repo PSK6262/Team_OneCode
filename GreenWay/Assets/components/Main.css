@@ -200,9 +200,8 @@ body {
     color: #666;
 }
 .showSelectedPlace{
-    position: fixed;
-    bottom:12vh;
-    left:12vh;
+    position: relative;
+    user-select: none;
     right:0;
     width:35vh;
     height:40vh;
@@ -291,10 +290,10 @@ body {
         height:70vh;
     }
     .showSelectedPlace{
-        width:30vh;
-        height:28vh;
-        top: 45vh;
-        left: 3vh;
+        width:100%;
+        height:100%;
+        top: 45%;
+        left: 45%;
     }
     .infoArea{
         display: none;
@@ -306,10 +305,7 @@ body {
 }
 @media screen and (max-width: 767px){
     .showSelectedPlace{
-        width:25vh;
-        height:20vh;
-        top: 45vh;
-        left: 3vh;
+        display: none;
     }
     .switch-container-horizontal{
         display:none;

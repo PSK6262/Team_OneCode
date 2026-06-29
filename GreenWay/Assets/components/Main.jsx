@@ -1,6 +1,7 @@
 import { useEffect , useState , useRef } from "react";
 import { useNavigate } from 'react-router'
 import { ListGroup , Form } from 'react-bootstrap';
+import { Rnd } from 'react-rnd';
 import "./Main.css";
 import '../page2/Trail'
 import { AlignRight, Bold } from "lucide-react";
@@ -18,6 +19,7 @@ function Main({Data,showIntro,setShowIntro}){
     const markerRef = useRef(null);
     const currentPlaceMarkerRef = useRef(null);
     const infoWindowRef = useRef(null);
+    const mapContainerRef = useRef(null);
     const navigate = useNavigate();
     
     const [currentLat, setCurrentLat] = useState(null);
@@ -169,7 +171,7 @@ function Main({Data,showIntro,setShowIntro}){
                 </div>
             </div>
             <div className="body_container">
-                <div className="maps">
+                <div className="maps" ref={mapContainerRef}>
                     <div className="map-placeholder">
                         <div id="map"></div>
                     </div>
@@ -273,37 +275,39 @@ function Main({Data,showIntro,setShowIntro}){
                 </div>
                 {
                     selectedPlace && 
-                    <div key={selectedPlace.id} className={`showSelectedPlace`} style={{ textAlign: "center" }}>
-                        <p><span className="titlePlace">{selectedPlace.name}</span> <span><button className="btn_close" onClick={()=>{
-                            setSelectedPlace(null);   
-                            setSelectedPlaceId(null);             
-                        }}>X</button></span></p>
-                        <p>
-                            <img src={selectedPlace.image} className="selectedPlaceImg" alt={selectedPlace.name}/>
-                        </p>
-                        <div className="infoArea">
-                        {
-                            selectedPlace.distance !== 0 &&
-                            <span style={{fontSize:'18px'}}>총 길이 {Number(selectedPlace.distance) / 1000} KM ,</span>
-                        }
-                        {
-                            selectedPlace.time !== 0 &&
-                            <span style={{fontSize:'18px'}}> 약 {selectedPlace.time}분 소요</span>
-                        }
-                        {
-                            <p style={{color:'#777'}}>{selectedPlace.address}</p>
-                        }
-                        {
-                            // 일단은 2개만 출력
-                            <p>태그 : {selectedPlace.tags[0]}, {selectedPlace.tags[1]}</p>
-                        }
-                        {
-                            showCurrentPlace &&
-                            <p>현재 위치로부터 약 {Math.floor(distance/100)/10}KM</p>
-                        }
+                    <Rnd bounds={mapContainerRef.current} enableResizing={"false"} default={{x:10,y:350}}>
+                        <div key={selectedPlace.id} className={`showSelectedPlace`} style={{ textAlign: "center" }}>
+                            <p><span className="titlePlace">{selectedPlace.name}</span> <span><button className="btn_close" onClick={()=>{
+                                setSelectedPlace(null);   
+                                setSelectedPlaceId(null);             
+                            }}>X</button></span></p>
+                            <p>
+                                <img src={selectedPlace.image} className="selectedPlaceImg" alt={selectedPlace.name} draggable={false}/>
+                            </p>
+                            <div className="infoArea">
+                            {
+                                selectedPlace.distance !== 0 &&
+                                <span style={{fontSize:'18px'}}>총 길이 {Number(selectedPlace.distance) / 1000} KM ,</span>
+                            }
+                            {
+                                selectedPlace.time !== 0 &&
+                                <span style={{fontSize:'18px'}}> 약 {selectedPlace.time}분 소요</span>
+                            }
+                            {
+                                <p style={{color:'#777'}}>{selectedPlace.address}</p>
+                            }
+                            {
+                                // 일단은 2개만 출력
+                                <p>태그 : {selectedPlace.tags[0]}, {selectedPlace.tags[1]}</p>
+                            }
+                            {
+                                showCurrentPlace &&
+                                <p>현재 위치로부터 약 {Math.floor(distance/100)/10}KM</p>
+                            }
+                            </div>
+                            <button id="detail-btn">상세 보기</button>
                         </div>
-                        <button id="detail-btn">상세 보기</button>
-                    </div>
+                    </Rnd>
                 }
             </div>
             <div className="global-footer">
