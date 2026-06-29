@@ -189,6 +189,17 @@ body {
 }
 .search-box-wrapper{
     background-color: 1px solid #e5e8eb;
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+.search-box-wrapper:hover{
+    border-color: #b5b5b5;    
+}
+.search-box-wrapper:focus-within {
+    border-color: #03C75A;
+    border-radius: 0.375rem;
+    box-shadow: 0 0 0 0.15rem rgba(3,199,90,0.15);
 }
 .selectedPlace{
     position: relative;
@@ -202,14 +213,23 @@ body {
 .showSelectedPlace{
     position: relative;
     user-select: none;
-    right:0;
-    width:35vh;
-    height:40vh;
+    width:30vh;
+    height:26vh;
     background:white;
-    border-radius:20px 20px 20px 20px;
+    border-radius:16px 16px 16px 16px;
     box-shadow:0 -4px 20px rgba(0,0,0,0.15);
     z-index:1000;
     animation: slideUp 0.25s ease-out;
+    transition: height 0.23s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.showSelectedPlace.currentPlaceTypeTrail.currentPlaceBtnOn{
+    height: 31vh;
+}
+.showSelectedPlace.currentPlaceBtnOn{
+    height: 29vh;
+}
+.showSelectedPlace.currentPlaceTypeTrail{
+    height: 28vh;
 }
 .switch-container-horizontal{
     font-size: 12px;
@@ -223,9 +243,51 @@ body {
     font-weight:bold;
 }
 .infoArea{
-    font-size: 15px;
-    height: 100px;
-    margin-top: 4px;
+    font-size: 13px;
+    height: 40px;
+    margin-top: 6px;
+    color: #777;
+    transition: height 0.23s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+/* 이거 자식구조 아니라서 띄어쓰기 없음 */
+.infoArea.currentPlaceTypeTrail{
+    height: 60px;
+}
+.infoArea.currentPlaceBtnOn{
+    height: 65px;
+}
+.infoArea.currentPlaceBtnOn.currentPlaceTypeTrail{
+    height: 80px;
+}
+.search-btn-close{
+    width: auto;
+    height:100%;
+    border-radius: 0 0.375rem 0.375rem 0;
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+    cursor: pointer;
+    padding : 0 10px;
+}
+.search-btn-close:focus{
+    border-color: #03C75A;
+    box-shadow: 0 0 0 0.15rem rgba(3,199,90,0.15);
+    outline:none;
+}
+.custom-search-input:focus{
+    border-color: #03C75A !important;
+    box-shadow: 0 0 0 0.15rem rgba(3,199,90,0.15) !important;
+    outline: none !important;
+}
+.custom-search-input:hover{
+    border-color: #b5b5b5;
+}
+.custom-search-input{
+    flex: 1;
+    width:auto;
+    min-width: 0;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    transition: 0.2s;
 }
 .btn_close{
     border:none;
@@ -235,9 +297,12 @@ body {
     top: 1.3vh;
     transform:translateY(-50%);             
 }
+.btn_close:hover{
+    color:#9CA3AF;
+}
 .selectedPlaceImg{
-    width: 35vh;
-    height: 20vh;
+    width: 28vh;
+    height: 14vh;
     object-fit:cover;
 }
 #detail-btn{
@@ -245,7 +310,10 @@ body {
     color:white;
     border: none;
     border-radius: 6px;
-    padding: 6px 12px;
+    padding: 0px 6px;
+}
+.form-control{
+    border-radius: 0.375rem 0 0 0.375rem !important;
 }
 .favorite_btn{
     margin-left: auto;
@@ -253,7 +321,7 @@ body {
     border:none;
     border-radius: 20px;
     background-color: #FFFFFF;
-    color:green;
+    color:#03C75A;
 }
 .non_favorite_btn{
     margin-left: auto;
@@ -287,20 +355,22 @@ body {
 @media screen and (max-width: 1023px){
     .body_container{
         width:100%;
-        height:70vh;
+        height:80vh;
     }
     .showSelectedPlace{
-        width:100%;
-        height:100%;
+        width:80%;
         top: 45%;
         left: 45%;
+    }
+    .showSelectedPlace.currentPlaceTypeTrail{
+        height:100%;
     }
     .infoArea{
         display: none;
     }
     .selectedPlaceImg{
-        width:100%;
-        height:18vh;
+        width:90%;
+        height:16vh;
     }
 }
 @media screen and (max-width: 767px){
@@ -312,7 +382,7 @@ body {
     }
     .body_container{
         width:100%;
-        height:60vh;
+        height:80vh;
     }
     .selectedPlaceImg{
         height:13vh;
@@ -320,6 +390,9 @@ body {
 }
 @media screen and (max-width: 429px){
     .showSelectedPlace{
+        display: none;
+    }
+    .search-box-wrapper{
         display: none;
     }
 }

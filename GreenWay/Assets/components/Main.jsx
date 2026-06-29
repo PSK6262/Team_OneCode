@@ -13,6 +13,7 @@ function Main({Data,showIntro,setShowIntro}){
     const [showCurrentPlace, setShowCurrentPlace] = useState(false); // 현재 위치 보이기
     const [selectedPlaceId, setSelectedPlaceId] = useState(null); // 현재 클릭중인 장소 표시
     const [selectedPlace, setSelectedPlace] = useState(null);
+    const [selectedType, setSelectedType] = useState(null);
     const mapRef = useRef(null);
     const markerRef = useRef(null);
     const currentPlaceMarkerRef = useRef(null);
@@ -124,6 +125,20 @@ function Main({Data,showIntro,setShowIntro}){
             setDistance(mapRef.current.getProjection().getDistance(Departure,Destination));
         }
     },[selectedPlace,currentLat,currentLng])
+    // 키보드 ESC 누를 시 정보창 꺼짐
+    useEffect(() => {
+        if (!selectedPlace) return;
+        const handleKeyDown = (e) => {
+            if (e.key === "Escape") {
+                setSelectedPlace(null);
+                setSelectedPlaceId(null);
+            }
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [selectedPlace]);
     // 현재 위치 반환 코드 (HTML5 Geolocation API)
     // HTML5 Geolocation API는 브라우저 내장이므로 무료.
     const getBrowserLocation = () => {
@@ -173,33 +188,12 @@ function Main({Data,showIntro,setShowIntro}){
                             value={searchText}
                             onChange={(e)=>setSearchText(e.target.value)}
                         />
-                        <p className="searchData">즐겨찾기 {fav.length}개 , 검색 결과 {filteredData.length}개</p>
+                        <button className="search-btn-close" onClick={()=>{
+                            setSearchText("");
+                        }}>X</button>
                     </div>
+                    <p className="searchData">검색 결과 {filteredData.length}개</p>
                     {/* 검색하면 아래 리스트에서 해당하는것만 나오게. */}
-                    <ListGroup className="nameList_fav">
-                    {
-                        fav.length>0 && fav.map((item)=>{
-                            return(
-                                    <ListGroup.Item
-                                        key={item.id}
-                                        variant="light"
-                                        onClick={() => moveMap(item)}
-                                        style={{ cursor: "pointer" }}
-                                        className={item.id === selectedPlaceId ? "selectedPlace":""}
-                                        >
-                                        {item.name}
-                                        <button className="favorite_btn" onClick={(e)=>{
-                                            e.stopPropagation();
-                                            if(localStorage.getItem(`favorite_${item.id}`) === 'true') 
-                                                localStorage.removeItem(`favorite_${item.id}`);
-                                            else localStorage.setItem(`favorite_${item.id}`,'true');
-                                            changeFav();
-                                        }}>★</button>
-                                    </ListGroup.Item>
-                            )
-                        })
-                    }
-                    </ListGroup>
                     <ListGroup className="nameList">
                     {
                         // 만약 길이가 0 이다 -> 아무것도 없다.
@@ -235,6 +229,31 @@ function Main({Data,showIntro,setShowIntro}){
                         )
                     }
                     </ListGroup>
+                    <p className="searchData">즐겨찾기 {fav.length}개</p>
+                    <ListGroup className="nameList_fav">
+                    {
+                        fav.length>0 && fav.map((item)=>{
+                            return(
+                                    <ListGroup.Item
+                                        key={item.id}
+                                        variant="light"
+                                        onClick={() => moveMap(item)}
+                                        style={{ cursor: "pointer" }}
+                                        className={item.id === selectedPlaceId ? "selectedPlace":""}
+                                        >
+                                        {item.name}
+                                        <button className="favorite_btn" onClick={(e)=>{
+                                            e.stopPropagation();
+                                            if(localStorage.getItem(`favorite_${item.id}`) === 'true') 
+                                                localStorage.removeItem(`favorite_${item.id}`);
+                                            else localStorage.setItem(`favorite_${item.id}`,'true');
+                                            changeFav();
+                                        }}>★</button>
+                                    </ListGroup.Item>
+                            )
+                        })
+                    }
+                    </ListGroup>
                     <div className="switch-container-horizontal">
                         <Form.Check 
                             type="switch"
@@ -264,29 +283,29 @@ function Main({Data,showIntro,setShowIntro}){
                 {
                     selectedPlace && 
                     <Rnd bounds={mapContainerRef.current} enableResizing={"false"} default={{x:10,y:350}}>
-                        <div key={selectedPlace.id} className={`showSelectedPlace`} style={{ textAlign: "center" }}>
-                            <p><span className="titlePlace">{selectedPlace.name}</span> <span><button className="btn_close" onClick={()=>{
+                        <div key={selectedPlace.id} className={`showSelectedPlace ` + (showCurrentPlace && "currentPlaceBtnOn") +" " + (selectedPlace.type === '산책로' && "currentPlaceTypeTrail") } style={{ textAlign: "center" }}>
+                            <p><span className="titlePlace" style={{fontSize:'14px'}}>{selectedPlace.name} ({selectedPlace.type})</span> <span><button className="btn_close" onClick={()=>{
                                 setSelectedPlace(null);   
                                 setSelectedPlaceId(null);             
                             }}>X</button></span></p>
                             <p>
                                 <img src={selectedPlace.image} className="selectedPlaceImg" alt={selectedPlace.name} draggable={false}/>
                             </p>
-                            <div className="infoArea">
+                            <div className={"infoArea " + (showCurrentPlace && "currentPlaceBtnOn") +" "+ (selectedPlace.type === '산책로' && "currentPlaceTypeTrail")}>
                             {
-                                <p style={{color:'#000000'},{fontSize:'16px'}}>{selectedPlace.address}</p>
+                                <p style={{color:'#000000'}}>{selectedPlace.address}</p>
                             }
                             {
-                                // 일단은 2개만 출력
-                                <p style={{color:'#777'}}>태그 : {selectedPlace.tags[0]}, {selectedPlace.tags[1]}</p>
+                                // 일단은 2개만 출력, 나머지는 상세보기에서
+                                <p>태그 : {selectedPlace.tags[0]}, {selectedPlace.tags[1]}</p>
                             }
                             {
                                 selectedPlace.distance !== 0 &&
-                                <span style={{fontSize:'14px'},{color:'#777'}}>총 길이 {Number(selectedPlace.distance) / 1000} KM ,</span>
+                                <span>총 길이 {Number(selectedPlace.distance) / 1000} KM ,</span>
                             }
                             {
                                 selectedPlace.time !== 0 &&
-                                <span style={{fontSize:'14px'},{color:'#777'}}> 약 {selectedPlace.time}분 소요</span>
+                                <span> 약 {selectedPlace.time}분 소요</span>
                             }
                             {
                                 showCurrentPlace &&
