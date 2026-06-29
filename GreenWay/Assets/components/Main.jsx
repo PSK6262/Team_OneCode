@@ -4,7 +4,7 @@ import { ListGroup , Form } from 'react-bootstrap';
 import { AlignRight, Bold } from "lucide-react";
 import { Rnd } from 'react-rnd';
 import "./Main.css";
-import '../page2/Trail'
+import ListMain from "./ListMain.jsx";
 
 function Main({Data,showIntro,setShowIntro}){
     const [searchText, setSearchText] = useState(""); // 검색용
@@ -151,7 +151,7 @@ function Main({Data,showIntro,setShowIntro}){
             window.removeEventListener("keydown", handleKeyDown);
         };
     }, [selectedPlace]);
-    
+
     // 현재 위치 반환 코드 (HTML5 Geolocation API)
     // HTML5 Geolocation API는 브라우저 내장이므로 무료.
     const getBrowserLocation = () => {
@@ -208,39 +208,8 @@ function Main({Data,showIntro,setShowIntro}){
                     <p className="searchData">검색 결과 {filteredData.length}개</p>
                     {/* 검색하면 아래 리스트에서 해당하는것만 나오게. */}
                     <ListGroup className="nameList">
-                    {
-                        // 만약 길이가 0 이다 -> 아무것도 없다.
-                        filteredData.length === 0 
-                        ? (
-                            <ListGroup.Item>
-                                조건에 맞는 결과가 없습니다.
-                            </ListGroup.Item>
-                        )
-                        :
-                        (
-                            filteredData.map((item) => ( // return
-                                    <ListGroup.Item
-                                        key={item.id}
-                                        variant="light"
-                                        onClick={() => moveMap(item)}
-                                        style={{ cursor: "pointer" }}
-                                        className={item.id === selectedPlaceId ? "selectedPlace":""}
-                                    >
-                                    {item.name}
-                                    <button className="non_favorite_btn" onClick={(e)=>{
-                                        e.stopPropagation();
-                                        if(localStorage.getItem(`favorite_${item.id}`) === 'true') {
-                                            localStorage.removeItem(`favorite_${item.id}`);
-                                        } 
-                                        else {
-                                            localStorage.setItem(`favorite_${item.id}`,'true');
-                                        }
-                                        changeFav();
-                                    }}>☆</button>                                    
-                                    </ListGroup.Item>
-                            ))
-                        )
-                    }
+                        <ListMain list={filteredData} fav={fav} changeFav={changeFav} 
+                            selectedPlaceId={selectedPlaceId} moveMap={moveMap} isfav={false}></ListMain>
                     </ListGroup>
                     <p className="searchData">즐겨찾기 {fav.length}개</p>
                     <ListGroup className="nameList_fav">
