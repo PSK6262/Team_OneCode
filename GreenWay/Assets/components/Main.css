@@ -1,17 +1,51 @@
+/* 기본 설정 */
 *{
     box-sizing: border-box;
     font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
     letter-spacing: -0.3px;
 }
-
 body { 
     background-color: #EEF1F3;
     min-height: 100vh;
 }
+
+
+/*  맵 관련  */
 #map{
     width:100%;
     height:100%;
 }
+.maps {
+    width: 70%;
+    background-color: #e9ecef;   
+    border: 1px solid #dee2e6;   
+    border-radius: 16px;         /* 둥근 모서리 */
+    margin-right: 20px;          
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05); /* inset = 박스 안쪽에 shadow */
+    overflow: hidden;
+}
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.map-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    opacity: 0.6;
+}
+.map-text {
+    margin: 0;
+    font-size: 14px;
+    color: #868e96;
+    font-weight: 500;
+}
+
+
+/* 처음 시작시 메인화면과 메인화면 전환 시 트랜지션 관련 코드 */
 .main-bg{
     position: fixed;            
     top: 50%;                   
@@ -34,45 +68,49 @@ body {
     align-items: center;
     text-align: center;
 }
-.maps {
-    width: 70%;
-    background-color: #e9ecef;   
-    border: 1px solid #dee2e6;   
-    border-radius: 16px;         /* 둥근 모서리 */
-    margin-right: 20px;          
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05); /* inset = 박스 안쪽에 shadow */
-    overflow: hidden;
+.start {
+    opacity: 1 !important; /* !important <- 상위파일 css에서 적힌거 무시 (index.css) */
+    visibility: visible;
 }
-
-.map-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.fade-out {
+    opacity: 0 !important;
+    visibility: hidden;
+    pointer-events: none !important;       
 }
-
-.map-icon {
-    font-size: 32px;
-    margin-bottom: 8px;
+.intro-content {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.intro-title {
+    font-size: 2.5rem; 
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+    color: #ffffff !important;
+}
+.intro-subtitle {
+    font-size: 1.2rem;          
+    font-weight: 400;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+.intro-click-hint {
+    font-size: 0.9rem;
     opacity: 0.6;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 8px 16px;
+    border-radius: 30px;
+    animation: blink 2s infinite;
 }
 
-.map-text {
-    margin: 0;
-    font-size: 14px;
-    color: #868e96;
-    font-weight: 500;
-}
 
+/* nameList nameGroup 관련 (오른쪽 검색결과)  */
 .nameGroups{
     width:30%;
     height:100%;
     display: flex;
     flex-direction: column;
 }
-
 .nameList , .nameList_fav{
     overflow: scroll;
     overflow-y: auto; 
@@ -100,19 +138,6 @@ body {
     cursor: pointer; 
     transform: translateX(3px);
 }
-.body_container{
-    height:80vh;
-    padding : 10px 10px;
-    display: flex;
-    background-color: #F5F7F8;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
-.main-map{
-    opacity: 1;
-    width:100%;
-    height:60vh;
-}
 .nameList .list-group-item{
     display:flex;
     justify-content: center;
@@ -121,24 +146,36 @@ body {
 .nameList::-webkit-scrollbar {
     width: 6px;  /* 스크롤바 두께를 아주 얇게 조절 */
 }
-
 .nameList .list-group-item:hover {
     background-color: #f1f3f5;
     cursor: pointer; 
     transform: translateX(3px);
 }
-
-.start {
-    opacity: 1 !important; /* !important <- 상위파일 css에서 적힌거 무시 (index.css) */
-    visibility: visible;
+.favorite_btn{
+    margin-left: auto;
+    display: inline-flex;
+    border:none;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    color:#03C75A;
+}
+.non_favorite_btn{
+    margin-left: auto;
+    display: inline-flex;
+    border:none;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    color:black;
 }
 
-.fade-out {
-    opacity: 0 !important;
-    visibility: hidden;
-    pointer-events: none !important;       
+/* 전체 화면 container */
+.body_container{
+    height:80vh;
+    padding : 10px 10px;
+    display: flex;
+    background-color: #F5F7F8;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
-
 .switch-container-horizontal {
     display: flex;
     align-items: center;
@@ -150,43 +187,7 @@ body {
     color: #495057;
 }
 
-.global-footer {
-    text-align: center;
-    font-size: 12px;
-    color: #888; 
-    padding: 15px 0;   
-    margin-top: 15px;  
-
-}
-
-.intro-content {
-    color: #ffffff !important;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-.intro-title {
-    font-size: 2.5rem; 
-    font-weight: 700;
-    margin-bottom: 15px;
-    letter-spacing: -0.5px;
-    color: #ffffff !important;
-}
-
-.intro-subtitle {
-    font-size: 1.2rem;          
-    font-weight: 400;
-    opacity: 0.9;
-    margin-bottom: 40px;
-}
-
-.intro-click-hint {
-    font-size: 0.9rem;
-    opacity: 0.6;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    padding: 8px 16px;
-    border-radius: 30px;
-    animation: blink 2s infinite;
-}
+/* 검색 관련 */
 .search-box-wrapper{
     background-color: 1px solid #e5e8eb;
     align-items: center;
@@ -201,63 +202,9 @@ body {
     border-radius: 0.375rem;
     box-shadow: 0 0 0 0.15rem rgba(3,199,90,0.15);
 }
-.selectedPlace{
-    position: relative;
-    background-color: #edf9f1;
-    border-left: 4px solid #03C75A;
-}
 .searchData{
     font-size: 14px;
     color: #666;
-}
-.showSelectedPlace{
-    position: relative;
-    user-select: none;
-    width:30vh;
-    height:26vh;
-    background:white;
-    border-radius:16px 16px 16px 16px;
-    box-shadow:0 -4px 20px rgba(0,0,0,0.15);
-    z-index:1000;
-    animation: slideUp 0.25s ease-out;
-    transition: height 0.23s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.showSelectedPlace.currentPlaceTypeTrail.currentPlaceBtnOn{
-    height: 31vh;
-}
-.showSelectedPlace.currentPlaceBtnOn{
-    height: 29vh;
-}
-.showSelectedPlace.currentPlaceTypeTrail{
-    height: 28vh;
-}
-.switch-container-horizontal{
-    font-size: 12px;
-}
-.btn_close{
-    color:#888;
-    font-size:18px;
-}
-.titlePlace{
-    font-size:16px;
-    font-weight:bold;
-}
-.infoArea{
-    font-size: 13px;
-    height: 40px;
-    margin-top: 6px;
-    color: #777;
-    transition: height 0.23s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-/* 이거 자식구조 아니라서 띄어쓰기 없음 */
-.infoArea.currentPlaceTypeTrail{
-    height: 60px;
-}
-.infoArea.currentPlaceBtnOn{
-    height: 65px;
-}
-.infoArea.currentPlaceBtnOn.currentPlaceTypeTrail{
-    height: 80px;
 }
 .search-btn-close{
     width: auto;
@@ -289,6 +236,64 @@ body {
     border-radius: 8px;
     transition: 0.2s;
 }
+.form-control{
+    border-radius: 0.375rem 0 0 0.375rem !important;
+}
+
+/* 미니뷰 관련 */
+.selectedPlace{
+    position: relative;
+    background-color: #edf9f1;
+    border-left: 4px solid #03C75A;
+}
+.showSelectedPlace{
+    position: relative;
+    user-select: none;
+    width:30vh;
+    height:26vh;
+    background:white;
+    border-radius:16px 16px 16px 16px;
+    box-shadow:0 -4px 20px rgba(0,0,0,0.15);
+    z-index:1000;
+    animation: slideUp 0.25s ease-out;
+    transition: height 0.23s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.showSelectedPlace.currentPlaceTypeTrail.currentPlaceBtnOn{
+    height: 31vh;
+}
+.showSelectedPlace.currentPlaceBtnOn{
+    height: 29vh;
+}
+.showSelectedPlace.currentPlaceTypeTrail{
+    height: 28vh;
+}
+.switch-container-horizontal{
+    font-size: 12px;
+}
+.infoArea{
+    font-size: 13px;
+    height: 40px;
+    margin-top: 6px;
+    color: #777;
+    transition: height 0.23s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.infoArea.currentPlaceTypeTrail{
+    height: 60px;
+}
+.infoArea.currentPlaceBtnOn{
+    height: 65px;
+}
+.infoArea.currentPlaceBtnOn.currentPlaceTypeTrail{
+    height: 80px;
+}
+.btn_close{
+    color:#888;
+    font-size:18px;
+}
+.miniViewTitlePlace{
+    font-size:16px;
+    font-weight:bold;
+}
 .btn_close{
     border:none;
     background:none;
@@ -312,29 +317,17 @@ body {
     border-radius: 6px;
     padding: 0px 6px;
 }
-.form-control{
-    border-radius: 0.375rem 0 0 0.375rem !important;
+
+/* footer 없어도됨 */
+.global-footer {
+    text-align: center;
+    font-size: 12px;
+    color: #888; 
+    padding: 15px 0;   
+    margin-top: 15px;  
+
 }
-.favorite_btn{
-    margin-left: auto;
-    display: inline-flex;
-    border:none;
-    border-radius: 20px;
-    background-color: #FFFFFF;
-    color:#03C75A;
-}
-.non_favorite_btn{
-    margin-left: auto;
-    display: inline-flex;
-    border:none;
-    border-radius: 20px;
-    background-color: #FFFFFF;
-    color:black;
-}
-.fav_guideLine{
-    margin: 0;
-    padding : 0;
-}
+
 /* 안내 문구 깜빡임 효과 */
 @keyframes blink {
     0% { opacity: 0.3; }

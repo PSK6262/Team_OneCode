@@ -284,7 +284,7 @@ function Main({Data,showIntro,setShowIntro}){
                     selectedPlace && 
                     <Rnd bounds={mapContainerRef.current} enableResizing={"false"} default={{x:10,y:350}}>
                         <div key={selectedPlace.id} className={`showSelectedPlace ` + (showCurrentPlace && "currentPlaceBtnOn") +" " + (selectedPlace.type === '산책로' && "currentPlaceTypeTrail") } style={{ textAlign: "center" }}>
-                            <p><span className="titlePlace" style={{fontSize:'14px'}}>{selectedPlace.name} ({selectedPlace.type})</span> <span><button className="btn_close" onClick={()=>{
+                            <p><span className="miniViewTitlePlace" style={{fontSize:'14px'}}>{selectedPlace.name} ({selectedPlace.type})</span> <span><button className="btn_close" onClick={()=>{
                                 setSelectedPlace(null);   
                                 setSelectedPlaceId(null);             
                             }}>X</button></span></p>
