@@ -17,10 +17,9 @@
     "react": "^19.2.6",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.6",
-<<<<<<< HEAD
-=======
+
     "react-draggable": "^4.7.0",
->>>>>>> ba7b120f9271fcd56d9b654428e39ac5a6f96352
+
     "react-rnd": "^10.5.3",
     "react-router": "^7.18.0"
   },

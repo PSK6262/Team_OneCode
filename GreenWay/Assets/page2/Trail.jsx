@@ -1,6 +1,5 @@
-import { href, useParams } from 'react-router'
-import { Container, Row, Col } from 'react-bootstrap';
-import { MapPin, Sparkles, Ruler, ParkingCircle, Clock, ThumbsUp, ThumbsDown, AlertTriangle } from "lucide-react";
+import { useParams } from 'react-router'
+import { MapPin, Ruler, ParkingCircle, Clock, ThumbsUp, ThumbsDown, AlertTriangle } from "lucide-react";
 import './Trail.css';
 import parksData from '../data/parksData.js';
 import { motion } from 'framer-motion';
@@ -9,7 +8,6 @@ import { useState, useEffect, useRef } from 'react';
 function Trail() {
     const { id } = useParams();
     const [ data, setData ] = useState(null);
-    const [ vusdml, setVusdml ] = useState(false);
     const [ showWebsite, setShowWebsite ] = useState(false);
     const [ showNotice, setShowNotice ] = useState(false);
     let [ upCount, setUpCount ] = useState(() => {
