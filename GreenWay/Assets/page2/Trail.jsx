@@ -26,7 +26,7 @@ function Trail() {
     const [ navUrl, setNavUrl ] = useState("");
     const [ star, setStar ] = useState(() => {
 
-    return localStorage.getItem(`favorite_${id}`) === 'true';
+        return localStorage.getItem(`favorite_${id}`) === 'true';
 
     });
     const navRef = useRef(null);
@@ -86,7 +86,7 @@ function Trail() {
         } else {
             localStorage.removeItem(starKey);
         }
-    }, [star, data]);
+    }, [ star, data ]);
 
     useEffect(() => {
         if (data && data.nav) {
@@ -155,8 +155,8 @@ function Trail() {
             text: inputText
         };
 
-        const updateCommnets = [ ...comments, newComments ];
-        setComments(updateCommnets);
+        const updateComments = [ ...comments, newComments ];
+        setComments(updateComments);
         localStorage.setItem(`trail_comment_${id}`, JSON.stringify(updateComments))
         setInputText("");
     }
@@ -178,7 +178,7 @@ function Trail() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 2.0 }}
             style={{ width: '100%', minHeight: '100vh', backgroundColor: '#f4f6f8', padding: '10px 0' }}
         >
             <div className="t-container">
@@ -225,11 +225,11 @@ function Trail() {
 
                                 <button onClick={() =>
                                     setStar(!star)}
-                                    style={{ color: star ? "gold" : "gray", border:'none'}}>
-                                        ★
+                                    style={{ color: star ? "gold" : "gray", border: 'none', fontSize: '24px', marginLEft: '20px' }}>
+                                    ★
                                 </button>
                                 <button className="share-btn" onClick={shareLink}
-                                    style={{ backgroundColor: '#f1f5f9', border: 'none', marginLeft: '25px', borderRadius: '12px', width: '200px' }}>
+                                    style={{ backgroundColor: '#f1f5f9', border: 'none', borderRadius: '12px', width: '200px' }}>
                                     🖨️ 공유하기
                                 </button>
                             </div>
@@ -274,14 +274,14 @@ function Trail() {
 
                         <div className="box" style={{ width: '100%' }}>
                             <div className="description">
-                                <h3>    소개 </h3>
+                                <h4>    소개 </h4>
                                 <p>{data.description}</p>
                             </div>
 
                             <div className="dnlcl">
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
                                     <Ruler size={18} color='#4A5D4E' />
-                                    <span><div className='m-name'>산책로 길이 </div> {data.distance}m</span>
+                                    <span><div className='m-name'>산책로 길이 </div> {data.distance >= 1000 ? `${(data.distance / 1000).toFixed(1)}km` : `${data.distance}m`}</span>
                                 </div>
 
                                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px', flexDirection: 'column', marginBottom: '10px' }}>
@@ -295,10 +295,13 @@ function Trail() {
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                     <Clock size={18} color='green' />
-                                    <span><div className='m-name'>산책 시간</div> {data.time}분</span>
+                                    <span><div className='m-name'>산책 시간</div> 
+                                        {data.time >= 60
+                                        ? `${Math.floor(data.time / 60)}시간 ${data.time % 60 > 0 ? `${data.time % 60}분` : ''}`
+                                        : `${data.time}분`}</span>
                                 </div>
 
-                                <div className="comment-section" style={{ flex: '0 0 45%', borderRadius: '16px', padding: '18px', border: '1px solid #e2e8f0', boxShadow: 'rgba(0,0,0,0.05)', marginTop: '12px', borderColor: '#A1887F', transition: 'all 0.3s ease' }}>
+                                <div className="comment-section" style={{ flex: '0 0 45%', borderRadius: '16px', padding: '20px', border: '1px solid #e2e8f0', boxShadow: 'rgba(0,0,0,0.05)', marginTop: '12px', borderColor: '#A1887F', transition: 'all 0.3s ease' }}>
                                     <h6 style={{ fontWeight: '700', color: '#111' }}>🖍 한줄평 후기 ({comments.length})</h6>
 
                                     <div className="comment-list-container" style={{ maxHeight: '100px', overflowY: 'auto', paddingRight: '4px' }}>
@@ -318,6 +321,16 @@ function Trail() {
                                         <textarea
                                             value={inputText}
                                             onChange={(e) => setInputText(e.target.value)}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') {
+                                                    if (e.nativeEvent.isComposing) return;
+
+                                                    if (!e.shiftKey) {
+                                                        e.preventDefault();
+                                                        addComments();
+                                                    }
+                                                }
+                                            }}
                                             placeholder="산책로에 대한 따뜻한 후기를 익명으로 남겨주세요."
                                             style={{ flex: 1, height: '40px', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '12px', resize: 'none', outline: 'none', transition: 'all 0.2s ease-in-out' }}
                                         />
