@@ -1,14 +1,12 @@
 import { useEffect , useState , useRef } from "react";
 import { useNavigate } from 'react-router'
 import { ListGroup , Form } from 'react-bootstrap';
+import { AlignRight, Bold } from "lucide-react";
 import { Rnd } from 'react-rnd';
 import "./Main.css";
 import '../page2/Trail'
-import { AlignRight, Bold } from "lucide-react";
 
 function Main({Data,showIntro,setShowIntro}){
-    // const [showIntro, setShowIntro] = useState(true); // 제일 처음 화면 보이기, 이후 false
-    // 상세페이지에서 메인 돌아갈때 안뜨게 만들기 위해서 Navigation.jsx로 이동.
     const [searchText, setSearchText] = useState(""); // 검색용
     const [hidePark, setHidePark] = useState(false); // 공원 숨기기
     const [hideTrail, setHideTrail] = useState(false); // 산책로 숨기기
@@ -20,30 +18,23 @@ function Main({Data,showIntro,setShowIntro}){
     const currentPlaceMarkerRef = useRef(null);
     const infoWindowRef = useRef(null);
     const mapContainerRef = useRef(null);
-    const navigate = useNavigate();
-    
     const [currentLat, setCurrentLat] = useState(null);
     const [currentLng, setCurrentLng] = useState(null);
     const [destination, setDestination] = useState(null); 
     const [location, setLocation] = useState(null);
     const [distance, setDistance] = useState(0);
-    // const [fav , setFav] = useState(false);
     const [fav, setFav] = useState([]);
-
-
+    const navigate = useNavigate();
+    // Fav 버튼 클릭시 작동
     const changeFav = () =>{
-        const isFavorite = Data.filter((item,index)=>{
+        const isFavorite = Data.filter((item)=>{
             if(localStorage.getItem(`favorite_${item.id}`) === "true") return true;
             return false;
         })
         setFav(isFavorite);
     }
-
-    useEffect(()=>{
-        changeFav();
-    },[Data])
-
-    const filteredData = Data.filter((item) => { // 오른쪽 Group에서 보여줄 것, true인것만 표현
+    // 오른쪽 Group에서 보여줄 것, true인것만 표현
+    const filteredData = Data.filter((item) => {
         const Favorite = localStorage.getItem(`favorite_${item.id}`);
         if(Favorite) return false;
         if (hidePark && item.type === "공원") return false;
@@ -53,10 +44,51 @@ function Main({Data,showIntro,setShowIntro}){
         }
         return true;
     });
-    // const favoriteData = Data.filter((item) => { // 오른쪽 Group에서 보여줄 것, true인것만 표현
-    //     const isFavorite = localStorage.getItem(`favorites_${item.id}`);
-    //     return isFavorite;
-    // });
+    // Group에서 새로운 위치를 찍으면 이동한다.
+    const moveMap = (place) => { 
+        if (!mapRef.current) return;
+        const moveLocation = new window.naver.maps.LatLng(
+            place.lat,
+            place.lng
+        )
+        setLocation(moveLocation);
+        setSelectedPlaceId(place.id); // 그룹멤버 클릭시 , 클릭 되었음을 보여줌
+        setSelectedPlace(place); // 멤버 클릭시 그 장소를 저장함
+        if(moveLocation !== null) {
+                mapRef.current.panTo(moveLocation); // 천천히 이동
+                mapRef.current.setZoom(15);
+                // 기존 마커 지우기
+                if (markerRef.current) {
+                    markerRef.current.setMap(null);
+                }
+                // 새 마커 만들기
+                markerRef.current = new window.naver.maps.Marker({
+                    position: moveLocation,
+                    map: mapRef.current
+                });
+                setTimeout(() => {
+                const btn = document.getElementById("detail-btn");
+                if (!btn) return;
+                btn.onclick = () => {
+                    if (place.type === "공원") {
+                        navigate(`/park/${place.id}`, {
+                            state : {cLat : currentLat , cLng : currentLng , dist : distance}
+                        });
+                    }
+                    else {
+                        navigate(`/trail/${place.id}`, {
+                            state : {cLat : currentLat , cLng : currentLng , dist : distance}
+                        });
+                    }
+                };
+            }, 100);
+        }
+    };   
+    // Fav 버튼 이벤트
+    useEffect(()=>{
+        changeFav();
+    },[Data])
+    // 마커 표시
     useEffect(() => {
         if(showCurrentPlace){
             getBrowserLocation();
@@ -67,9 +99,8 @@ function Main({Data,showIntro,setShowIntro}){
             }
         }
     },[showCurrentPlace,currentLat,currentLng])
-
-
-    useEffect(() => { // 네이버 지도 표시 (API 사용)
+    // 네이버 지도 표시 (API 사용)
+    useEffect(() => {
         if (!window.naver) return;
         const mapOptions = {
             center: new window.naver.maps.LatLng(
@@ -83,8 +114,8 @@ function Main({Data,showIntro,setShowIntro}){
             mapOptions
         );
     }, []); 
-
-    useEffect(()=> {
+    // 거리 표시용  
+    useEffect(()=> { 
         if(currentLat && currentLng && selectedPlace){
             const selected_lat = selectedPlace.lat;
             const selected_lng = selectedPlace.lng;
@@ -117,49 +148,6 @@ function Main({Data,showIntro,setShowIntro}){
             alert(`이 브라우저는 위치 정보를 지원하지 않습니다.`);
         }
     }
-
-    const moveMap = (place) => { // Group에서 새로운 위치를 찍으면 이동한다.
-        if (!mapRef.current) return;
-        const moveLocation = new window.naver.maps.LatLng(
-            place.lat,
-            place.lng
-        )
-
-        setLocation(moveLocation);
-        setSelectedPlaceId(place.id); // 그룹멤버 클릭시 , 클릭 되었음을 보여줌
-        setSelectedPlace(place); // 멤버 클릭시 그 장소를 저장함
-        if(moveLocation !== null) {
-                mapRef.current.panTo(moveLocation); // 천천히 이동
-                mapRef.current.setZoom(15);
-                // 기존 마커 지우기
-            if (markerRef.current) {
-                markerRef.current.setMap(null);
-            }
-            // 새 마커 만들기
-            markerRef.current = new window.naver.maps.Marker({
-                position: moveLocation,
-                map: mapRef.current
-            });
-            setTimeout(() => {
-                const btn = document.getElementById("detail-btn");
-                if (!btn) return;
-                btn.onclick = () => {
-                    if (place.type === "공원") {
-                        navigate(`/park/${place.id}`, {
-                            // state: { data: place }
-                            state : {cLat : currentLat , cLng : currentLng , dist : distance}
-                        });
-                    }
-                    else {
-                        navigate(`/trail/${place.id}`, {
-                            // state: { data: place }
-                            state : {cLat : currentLat , cLng : currentLng , dist : distance}
-                        });
-                    }
-                };
-            }, 100);
-        }
-    };   
     return(
         <>
             <div className={'main-bg '+ (showIntro ? 'start' : 'fade-out')} 
@@ -199,6 +187,7 @@ function Main({Data,showIntro,setShowIntro}){
                                         style={{ cursor: "pointer" }}
                                         className={item.id === selectedPlaceId ? "selectedPlace":""}
                                         >
+                                        {item.name}
                                         <button className="favorite_btn" onClick={(e)=>{
                                             e.stopPropagation();
                                             if(localStorage.getItem(`favorite_${item.id}`) === 'true') 
@@ -206,7 +195,6 @@ function Main({Data,showIntro,setShowIntro}){
                                             else localStorage.setItem(`favorite_${item.id}`,'true');
                                             changeFav();
                                         }}>★</button>
-                                            {item.name}
                                     </ListGroup.Item>
                             )
                         })
@@ -231,6 +219,7 @@ function Main({Data,showIntro,setShowIntro}){
                                         style={{ cursor: "pointer" }}
                                         className={item.id === selectedPlaceId ? "selectedPlace":""}
                                     >
+                                    {item.name}
                                     <button className="non_favorite_btn" onClick={(e)=>{
                                         e.stopPropagation();
                                         if(localStorage.getItem(`favorite_${item.id}`) === 'true') {
@@ -240,8 +229,7 @@ function Main({Data,showIntro,setShowIntro}){
                                             localStorage.setItem(`favorite_${item.id}`,'true');
                                         }
                                         changeFav();
-                                    }}>☆</button>
-                                        {item.name}
+                                    }}>☆</button>                                    
                                     </ListGroup.Item>
                             ))
                         )
@@ -286,23 +274,23 @@ function Main({Data,showIntro,setShowIntro}){
                             </p>
                             <div className="infoArea">
                             {
-                                selectedPlace.distance !== 0 &&
-                                <span style={{fontSize:'18px'}}>총 길이 {Number(selectedPlace.distance) / 1000} KM ,</span>
-                            }
-                            {
-                                selectedPlace.time !== 0 &&
-                                <span style={{fontSize:'18px'}}> 약 {selectedPlace.time}분 소요</span>
-                            }
-                            {
-                                <p style={{color:'#777'}}>{selectedPlace.address}</p>
+                                <p style={{color:'#000000'},{fontSize:'16px'}}>{selectedPlace.address}</p>
                             }
                             {
                                 // 일단은 2개만 출력
-                                <p>태그 : {selectedPlace.tags[0]}, {selectedPlace.tags[1]}</p>
+                                <p style={{color:'#777'}}>태그 : {selectedPlace.tags[0]}, {selectedPlace.tags[1]}</p>
+                            }
+                            {
+                                selectedPlace.distance !== 0 &&
+                                <span style={{fontSize:'14px'},{color:'#777'}}>총 길이 {Number(selectedPlace.distance) / 1000} KM ,</span>
+                            }
+                            {
+                                selectedPlace.time !== 0 &&
+                                <span style={{fontSize:'14px'},{color:'#777'}}> 약 {selectedPlace.time}분 소요</span>
                             }
                             {
                                 showCurrentPlace &&
-                                <p>현재 위치로부터 약 {Math.floor(distance/100)/10}KM</p>
+                                <p style={{color:'#777'}}>현재 위치로부터 약 {Math.floor(distance/100)/10}KM</p>
                             }
                             </div>
                             <button id="detail-btn">상세 보기</button>
