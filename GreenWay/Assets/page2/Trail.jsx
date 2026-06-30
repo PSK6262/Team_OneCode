@@ -109,24 +109,12 @@ function Trail() {
         }
 
         return (
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '4px' }}>
+            <div className="facility-list-box">
                 {finalArray.map((facility, fIdx) => {
                     const trimmed = facility.trim();
                     if (!trimmed) return null;
                     return (
-                        <span
-                            key={fIdx}
-                            style={{
-                                background: 'rgba(0, 136, 255, 0.08)',
-                                color: '#0066cc',
-                                padding: '4px 10px',
-                                borderRadius: '20px',
-                                fontSize: '12.5px',
-                                fontWeight: '600',
-                                border: '1px solid rgba(0, 136, 255, 0.15)',
-                                display: 'inline-block'
-                            }}
-                        >
+                        <span key={fIdx} className="facility-badge">
                             {trimmed}
                         </span>
                     );

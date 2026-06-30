@@ -119,17 +119,25 @@
     flex: 1;              
 }
 
-.nav-button {
-    width: 100%;
-    padding: 8px;
-    background: #2e7d32;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 14px;
+.facility-list-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
 }
+
+.facility-badge {
+    background: rgba(0, 136, 255, 0.08);
+    color: #0066cc;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 600;
+    border: 1px solid rgba(0, 136, 255, 0.15);
+    display: inline-block;
+    transition: all 0.2s ease-in-out; 
+}
+
 
 li{
     font-size : 13px;
@@ -152,6 +160,7 @@ li{
 
 .comment-section:hover {
     transform: translateY(-2px);
+    box-shadow : 0 0 10px rgba(0, 0, 0, 0.06);
 }
 
 textarea:focus{
@@ -176,20 +185,30 @@ textarea:focus{
 .address-btn:hover{
     border-color: green !important;
     transform: translateY(-2px);
+    box-shadow : 0 0 10px rgba(44, 185, 101, 0.6);
 }
 
 .share-btn:hover, .star-btn:hover{
     color: greenyellow;
     transform: translateY(-2px);
+    text-shadow : 0 0 10px rgba(44, 185, 101, 0.6);
 }
 
 .description:hover{
-    background-color: #02b350;
+    background-color: #98edb7;
+    box-shadow: 0 0 10px rgba(44, 185, 101, 0.6);
+    transform: translateY(-2px); 
 }
 
 .img:hover{
     width: 550px;
     height: 550px;
+}
+
+.facility-badge:hover {
+    background: #e6f0fa;
+    box-shadow: 0 0 10px rgba(0, 136, 255, 0.7);
+    transform: translateY(-2px); 
 }
 
 @media screen and (max-width: 750px){
