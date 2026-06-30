@@ -1,5 +1,43 @@
 @import url("https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Nanum+Myeongjo&display=swap");
 
+@media (max-width: 768px) {
+  .parkmain {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .park-detail-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .park-detail-img img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .park-right-content {
+    width: 100%;
+  }
+
+  .park-review-section {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .park-review-form-box,
+  .park-review-list-box {
+    width: 100%;
+  }
+
+  .namebox {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
 .park-detail-container {
   padding: 20px;
   width: 100%;
@@ -52,6 +90,9 @@ h1 {
   border-radius: 6px;
   font-weight: 600;
   border: 1px solid transparent;
+}
+.address-btn:hover {
+  background-color: #e5f8e5;
 }
 
 .top-button {
@@ -164,6 +205,10 @@ h1 {
   transition: all 0.2s ease;
 }
 
+.parkbtn1:hover {
+  background-color: #276029;
+}
+
 .share-link-box {
   width: 100%;
   display: flex;
@@ -242,6 +287,10 @@ h1 {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.park-review-submit-btn:hover {
+  background-color: #276029;
 }
 
 .park-review-list-box {

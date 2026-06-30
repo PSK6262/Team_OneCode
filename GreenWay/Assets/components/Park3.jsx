@@ -100,7 +100,7 @@ function Park3() {
     navigator.clipboard
       .writeText(currentUrl)
       .then(() => {
-        alert("URL이 복사되었습니다.");
+        alert("링크가 복사되었습니다.");
       })
       .catch((err) => {
         console.error("복사 실패:", err);
@@ -153,10 +153,11 @@ function Park3() {
               <button
                 className="saveclick"
                 onClick={handleSaveClick}
-                style={{ color: savebutton ? "gold" : "gray" }}>
+                style={{ color: savebutton ? "gold" : "gray" }}
+                title="저장">
                 ★
               </button>
-              <button className="share" onClick={handleShareClick}>
+              <button className="share" onClick={handleShareClick} title="공유">
                 ↪
               </button>
             </div>
@@ -177,7 +178,7 @@ function Park3() {
                     });
                   }, 300);
                 } else {
-                  alert("등록된 사이트 링크가 없습니다!");
+                  alert("등록된 사이트 링크가 없습니다");
                 }
               }}>
               길찾기
