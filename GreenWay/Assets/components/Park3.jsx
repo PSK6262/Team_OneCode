@@ -2,8 +2,7 @@ import "./Park3.css";
 import parksData from "../data/parksData";
 import { useParams } from "react-router";
 import { useState, useEffect, useRef } from "react";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import { MapPin } from "lucide-react";
 
 function Park3() {
   const { id } = useParams();
@@ -13,7 +12,6 @@ function Park3() {
   const [reviewUser, setReviewUser] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [savebutton, setSaveButton] = useState(false);
-  const [sharebutton, setShareButton] = useState(false);
 
   const [showWebsite, setShowWebsite] = useState(false);
   const navRef = useRef(null);
@@ -22,8 +20,6 @@ function Park3() {
   const [cLat, setCLat] = useState(null);
   const [cLng, setCLng] = useState(null);
   const [navUrl, setNavUrl] = useState("");
-
-  const handleClose = () => setShareButton(false);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -54,6 +50,9 @@ function Park3() {
     if (park && park.type == "공원") {
       setData(park);
       setReviews(park.reviews || []);
+
+      const isFavorite = localStorage.getItem(`favorite_${id}`) === "true";
+      setSaveButton(isFavorite);
     } else {
       setData(null);
       setReviews([]);
@@ -61,7 +60,7 @@ function Park3() {
   }, [id]);
 
   const handleReviewSubmit = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
 
     if (reviewText.trim() === "") {
       alert("후기를 입력해주세요!");
@@ -75,6 +74,37 @@ function Park3() {
 
     setReviews([...reviews, newReview]);
     setReviewText("");
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleReviewSubmit();
+    }
+  };
+
+  const handleSaveClick = () => {
+    const nextState = !savebutton;
+    setSaveButton(nextState);
+
+    if (nextState) {
+      localStorage.setItem(`favorite_${id}`, "true");
+    } else {
+      localStorage.removeItem(`favorite_${id}`);
+    }
+  };
+
+  const handleShareClick = () => {
+    const currentUrl = window.location.href;
+
+    navigator.clipboard
+      .writeText(currentUrl)
+      .then(() => {
+        alert("URL이 복사되었습니다.");
+      })
+      .catch((err) => {
+        console.error("복사 실패:", err);
+      });
   };
 
   if (!data) {
@@ -122,23 +152,18 @@ function Park3() {
             <div className="top-button">
               <button
                 className="saveclick"
-                onClick={() => {
-                  setSaveButton(!savebutton);
-                }}
+                onClick={handleSaveClick}
                 style={{ color: savebutton ? "gold" : "gray" }}>
                 ★
               </button>
-              <button
-                className="share"
-                onClick={() => {
-                  setShareButton(!sharebutton);
-                }}>
+              <button className="share" onClick={handleShareClick}>
                 ↪
               </button>
             </div>
           </div>
           <div className="address-box">
-            <p className="parkaddress">주소: {data.address}</p>
+            <MapPin size={20} color="orange" />
+            <p className="parkaddress">{data.address}</p>
             <button
               className="address-btn"
               onClick={() => {
@@ -207,17 +232,6 @@ function Park3() {
           </div>
         </div>
 
-        <Modal show={sharebutton} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>공원 공유하기</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="share-link-box">
-              :공원 주소:<button className="share-link-btn">복사</button>
-            </div>
-          </Modal.Body>
-        </Modal>
-
         <div ref={reviewRef} style={{ width: "100%" }}>
           {showReviews && (
             <div className="park-review-section">
@@ -231,6 +245,7 @@ function Park3() {
                     placeholder="후기를 남겨주세요."
                     value={reviewText}
                     onChange={(e) => setReviewText(e.target.value)}
+                    onKeyDown={handleKeyDown}
                   />
                   <button type="submit" className="park-review-submit-btn">
                     후기 등록
@@ -288,7 +303,7 @@ function Park3() {
               </div>
               <iframe
                 src={navUrl}
-                title={`${data.name} 웹사이트`}
+                title={`${data.name} Web Nav`}
                 allow="accelerometer; gyroscope"
                 style={{
                   width: "100%",
