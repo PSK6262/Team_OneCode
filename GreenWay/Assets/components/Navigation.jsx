@@ -53,7 +53,7 @@ function Navigation() {
                 navigate("/park/"+(selectedNumber+1)) : navigate("/trail/"+(selectedNumber+1));
               }}
               style={{ cursor: "pointer" }}>
-              추천 산책로
+              추천 코스
             </Nav.Link>
             <div className="weather-wrapper">
               <WeatherWidget lat={lat} lng={lng}/>
