@@ -14,7 +14,10 @@
     padding-bottom: 0.25em !important;
     padding-top:0.25em !important;
 }
-
+#navlink:hover{
+    transform: scale(1.025) !important;
+    transition: 0.2s;
+}
 @media screen and (max-width: 1023px) {
     .navbar_main{
         width:100%;

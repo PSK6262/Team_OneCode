@@ -39,6 +39,7 @@ function Navigation() {
           </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link
+              id="navlink"
               className="Home"
               onClick={() => {
                 setShowIntro(false);
@@ -46,6 +47,19 @@ function Navigation() {
               }}
               style={{ cursor: "pointer" }}>
               공원 · 산책로 안내
+            </Nav.Link>
+            <Nav.Link
+              id="navlink"
+              className="random-select"
+              onClick={() => {
+                const length = parksData.length;
+                const selectedNumber = Math.floor(Math.random()*length);
+                setShowIntro(false);
+                parksData[selectedNumber].type === "공원" ? 
+                navigate("/park/"+(selectedNumber+1)) : navigate("/trail/"+(selectedNumber+1));
+              }}
+              style={{ cursor: "pointer" }}>
+              추천 산책로
             </Nav.Link>
           </Nav>
         </Container>
