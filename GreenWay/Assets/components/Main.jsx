@@ -10,9 +10,8 @@ function Main({Data,showIntro,setShowIntro}){
     const [hidePark, setHidePark] = useState(false); // 공원 숨기기
     const [hideTrail, setHideTrail] = useState(false); // 산책로 숨기기
     const [showCurrentPlace, setShowCurrentPlace] = useState(false); // 현재 위치 보이기
-    const [selectedPlaceId, setSelectedPlaceId] = useState(null); // 현재 클릭중인 장소 표시
-    const [selectedPlace, setSelectedPlace] = useState(null);
-    const mapRef = useRef(null);
+    const [selectedPlace, setSelectedPlace] = useState(null); // 현재 클릭중인 장소 정보
+    const mapRef = useRef(null); // 렌더링 되어도 유지되는 변수 = useRef
     const markerRef = useRef(null);
     const currentPlaceMarkerRef = useRef(null);
     const mapContainerRef = useRef(null);
@@ -50,7 +49,6 @@ function Main({Data,showIntro,setShowIntro}){
             place.lat,
             place.lng
         )
-        setSelectedPlaceId(place.id); // 그룹멤버 클릭시 , 클릭 되었음을 보여줌
         setSelectedPlace(place); // 멤버 클릭시 그 장소를 저장함
         mapRef.current.panTo(moveLocation); // 천천히 이동
         mapRef.current.setZoom(15);
@@ -115,7 +113,6 @@ function Main({Data,showIntro,setShowIntro}){
         const handleKeyDown = (e) => {
             if (e.key === "Escape") {
                 setSelectedPlace(null);
-                setSelectedPlaceId(null);
             }
         };
         window.addEventListener("keydown", handleKeyDown);
@@ -181,13 +178,14 @@ function Main({Data,showIntro,setShowIntro}){
                     {/* 검색하면 아래 리스트에서 해당하는것만 나오게. */}
                     <ListGroup className="nameList">
                         <ListMain list={filteredData} changeFav={changeFav} 
-                            selectedPlaceId={selectedPlaceId} moveMap={moveMap} isFav={true}></ListMain>
+                            selectedPlaceId={selectedPlace?.id} moveMap={moveMap} isFav={true}></ListMain>
                     </ListGroup>
                     <p className="searchData">즐겨찾기 {fav.length}개</p>
                     <ListGroup className="nameList_fav">
                     {
+                        // 0 이상일때만 출력함
                         fav.length > 0 &&  <ListMain list={fav} changeFav={changeFav}
-                        selectedPlaceId={selectedPlaceId} moveMap={moveMap} isFav={false}/>
+                        selectedPlaceId={selectedPlace?.id} moveMap={moveMap} isFav={false}/>
                     }
                     </ListGroup>
                     <div className="switch-container-horizontal">
@@ -195,7 +193,7 @@ function Main({Data,showIntro,setShowIntro}){
                             type="switch"
                             id="trail-switch"
                             label="산책로 숨김"
-                            className="me-3" /* 오른쪽 간격 띄우기 */
+                            className="me-3 main-switches" /* 오른쪽 간격 띄우기 */
                             checked={hideTrail}
                             onChange={(e) => setHideTrail(e.target.checked)}
                         />
@@ -203,12 +201,13 @@ function Main({Data,showIntro,setShowIntro}){
                             type="switch"
                             id="park-switch"
                             label="공원 숨김"
-                            className="me-3" /* 오른쪽 간격 띄우기 */
+                            className="me-3 main-switches" /* 오른쪽 간격 띄우기 */
                             checked={hidePark}
                             onChange={(e) => setHidePark(e.target.checked)}
                         />
                         <Form.Check 
                             type="switch"
+                            className="main-switches"
                             id="current-place-switch"
                             label="현재 위치"
                             checked={showCurrentPlace}
@@ -221,8 +220,7 @@ function Main({Data,showIntro,setShowIntro}){
                     <Rnd bounds={mapContainerRef.current} enableResizing={"false"} default={{x:10,y:350}}>
                         <div key={selectedPlace.id} className={`showSelectedPlace ` + (showCurrentPlace && "currentPlaceBtnOn") +" " + (selectedPlace.type === '산책로' && "currentPlaceTypeTrail") } style={{ textAlign: "center" }}>
                             <p><span className="miniViewTitlePlace" style={{fontSize:'14px'}}>{selectedPlace.name} ({selectedPlace.type})</span> <span><button className="btn_close" onClick={()=>{
-                                setSelectedPlace(null);   
-                                setSelectedPlaceId(null);             
+                                setSelectedPlace(null);           
                             }}>X</button></span></p>
                             <p>
                                 <img src={selectedPlace.image} className="selectedPlaceImg" alt={selectedPlace.name} draggable={false}/>

@@ -239,6 +239,22 @@ body {
 .form-control{
     border-radius: 0.375rem 0 0 0.375rem !important;
 }
+.form-check-input:focus {
+    border-color: #03C75A;
+    box-shadow: 0 0 0 0.25rem rgba(3, 199, 90, 0.25);
+}
+.form-check-input:checked{
+    background-color: #03C75A; /* 원하는 색 */
+    border-color: #03C75A;
+}
+.form-check-input:hover {
+    border-color: #03C75A;
+}
+.form-check-input:checked:focus {
+    background-color: #03C75A;
+    border-color: #03C75A;
+    box-shadow: 0 0 0 0.25rem rgba(3, 199, 90, 0.25);
+}
 
 /* 미니뷰 관련 */
 .selectedPlace{
@@ -252,7 +268,7 @@ body {
     width:30vh;
     height:26vh;
     background:white;
-    border-radius:16px 16px 16px 16px;
+    border-radius:16px;
     box-shadow:0 -4px 20px rgba(0,0,0,0.15);
     z-index:1000;
     animation: slideUp 0.25s ease-out;
@@ -326,6 +342,9 @@ body {
     border: none;
     border-radius: 6px;
     padding: 0px 6px;
+}
+#detail-btn:hover {
+    background: #02b350;
 }
 
 /* footer 없어도됨 */
