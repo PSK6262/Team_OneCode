@@ -40,7 +40,7 @@ function Navigation() {
                 navigate("/");
               }}
               style={{ cursor: "pointer" }}>
-              공원 · 산책로 안내
+              공원 · 산책로 확인
             </Nav.Link>
             <Nav.Link
               id="navlink"

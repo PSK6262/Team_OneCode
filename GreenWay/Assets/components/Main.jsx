@@ -11,14 +11,15 @@ function Main({Data,showIntro,setShowIntro}){
     const [hideTrail, setHideTrail] = useState(false); // 산책로 숨기기
     const [showCurrentPlace, setShowCurrentPlace] = useState(false); // 현재 위치 보이기
     const [selectedPlace, setSelectedPlace] = useState(null); // 현재 클릭중인 장소 정보
-    const mapRef = useRef(null); // 렌더링 되어도 유지되는 변수 = useRef
-    const markerRef = useRef(null);
-    const currentPlaceMarkerRef = useRef(null);
-    const mapContainerRef = useRef(null);
-    const [currentLat, setCurrentLat] = useState(null);
-    const [currentLng, setCurrentLng] = useState(null);
-    const [distance, setDistance] = useState(0);
-    const [fav, setFav] = useState([]);
+    const [currentLat, setCurrentLat] = useState(null); // 위도
+    const [currentLng, setCurrentLng] = useState(null); // 경도
+    const [distance, setDistance] = useState(0); // 현재의 위치와 선택한 위치까지의 거리
+    const [fav, setFav] = useState([]); // 즐겨찾기 여부
+    const mapRef = useRef(null); // 렌더링 되어도 유지되는 변수 = useRef , 지도 정보
+    const markerRef = useRef(null); // 선택한 위치에 마커 , 그리고 그 정보
+    const currentPlaceMarkerRef = useRef(null); // 현재 위치 마커
+    const mapContainerRef = useRef(null); //설명창이 지도 밖으로 나가지 않게 하기 위해서 , 맵의 레퍼런스를 담을 통
+    
     const navigate = useNavigate();
 
     // Fav 버튼 클릭시 작동
@@ -67,7 +68,8 @@ function Main({Data,showIntro,setShowIntro}){
     const moveDetail = () => {
         if (!selectedPlace) return;
         const path = selectedPlace.type === "공원" ? `/park/${selectedPlace.id}` : `/trail/${selectedPlace.id}`;
-        navigate(path,{state : {cLat : currentLat , cLng : currentLng , dist : distance}});
+        navigate(path);
+        //navigate(path,{state : {cLat : currentLat , cLng : currentLng , dist : distance}});
     }
 
     // Fav 버튼 이벤트
@@ -183,7 +185,7 @@ function Main({Data,showIntro,setShowIntro}){
                     <p className="searchData">즐겨찾기 {fav.length}개</p>
                     <ListGroup className="nameList_fav">
                     {
-                        // 0 이상일때만 출력함
+                        // 0 이상일때만 출력함 -> 없으면 리스트 하나만
                         fav.length > 0 &&  <ListMain list={fav} changeFav={changeFav}
                         selectedPlaceId={selectedPlace?.id} moveMap={moveMap} isFav={false}/>
                     }
@@ -231,7 +233,7 @@ function Main({Data,showIntro,setShowIntro}){
                                     <p style={{color:'#000000'}}>{selectedPlace.address}</p>
                                     
                                     {/* // 일단은 2개만 출력, 나머지는 상세보기에서 */}
-                                    <p>태그 : {selectedPlace.tags[0]}, {selectedPlace.tags[1]}</p>
+                                    <p>특징 : {selectedPlace.tags[0]}, {selectedPlace.tags[1]}</p>
                                     
                                     {selectedPlace.distance !== 0 && 
                                     <span>총 길이 {Number(selectedPlace.distance) / 1000} KM ,</span>}
