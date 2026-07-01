@@ -252,9 +252,6 @@ function Main({Data,showIntro,setShowIntro}){
                     </Rnd>
                 }
             </div>
-            <div className="global-footer">
-                <p>© 2026 OneCode All rights reserved. | naverAPI 활용 팀 과제</p>
-            </div>
         </>
     )
 }

@@ -80,6 +80,9 @@ function Navigation() {
           path="/park/:id"
           element={<Park Data={parksData}/>}></Route>
       </Routes>
+      <div className="global-footer">
+        <p>© 2026 OneCode All rights reserved. | naverAPI 활용 팀 과제</p>
+      </div>
     </>
   );
 }
