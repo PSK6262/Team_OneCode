@@ -13,7 +13,7 @@ import Park from "./Park3.jsx";
 import WeatherWidget from "./WeatherWidget.jsx";
 
 function Navigation() {
-  const Logo = "/images/logo.png";
+  const Logo = `${import.meta.env.BASE_URL}/images/logo.png`;
   let navigate = useNavigate();
   const [showIntro, setShowIntro] = useState(true); // 제일 처음 화면 보이기, 이후 false
   

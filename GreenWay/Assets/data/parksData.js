@@ -7,7 +7,7 @@ const parksData = [
     description:
       "천안의 대표적인 역사 공원으로 천안흥타령 축제가 열리는 문화 공간입니다.",
     distance: 0,
-    image: "/images/id1.png",
+    image: `${import.meta.env.BASE_URL}images/id1.png`,
     address: "충청남도 천안시 동남구 삼룡동 충절로 410",
     convenience: [
       "정문 우측 대형 화장실",
@@ -27,7 +27,7 @@ const parksData = [
     description:
       "소나무 숲길을 따라 걸으며 천안 시내를 한눈에 내려다볼 수 있는 힐링 코스입니다.",
     distance: 6730,
-    image: "/images/id2.PNG",
+    image: `${import.meta.env.BASE_URL}images/id2.PNG`,
     address: "충청남도 천안시 동남구 목천읍 덕전리",
     convenience: [
       "태조산 청소년수련관 주차장 이용",
@@ -47,7 +47,7 @@ const parksData = [
     description:
       "신불당 지구 중심에 위치하여 주민들의 휴식과 가벼운 운동을 책임지는 도심 공원입니다.",
     distance: 0,
-    image: "/images/id3.PNG",
+    image: `${import.meta.env.BASE_URL}images/id3.PNG`,
     address: "충청남도 천안시 서북구 불당동 118-1",
     convenience: [
       "관리사무소 건물 내 화장실",
@@ -67,7 +67,7 @@ const parksData = [
     description:
       "도심을 가로지르는 천안천을 따라 잘 정비된 평지형 보행자 전용 산책로입니다.",
     distance: 8800,
-    image: "/images/id4.jpg",
+    image: `${import.meta.env.BASE_URL}images/id4.jpg`,
     address: "충청남도 천안시 동남구 다가동",
     convenience: ["다리 밑 그늘 쉼터 의자", "진입로 주변 공공자전거 대여소"],
     lat: 36.7985,
@@ -83,7 +83,7 @@ const parksData = [
     description:
       "생태 자원을 보존하며 수변 데크길이 아름답게 조성된 천안의 새로운 핫플레이스 공원입니다.",
     distance: 0,
-    image: "/images/id5.PNG",
+    image: `${import.meta.env.BASE_URL}images/id5.PNG`,
     address: "천안시 서북구 성성동 39-3 성성호수공원",
     convenience: [
       "방문자센터 내 화장실, 수유실",
@@ -103,7 +103,7 @@ const parksData = [
     description:
       "성성호수공원을 크게 한 바퀴 돌 수 있는 평탄하고 쾌적한 나무 데크 산책로입니다.",
     distance: 4100,
-    image: "/images/id6.jpeg",
+    image: `${import.meta.env.BASE_URL}images/id6.jpeg`,
     address: "충청남도 천안시 서북구 성성2길 66",
     convenience: ["코스 중간 야간 조명등 설치", "포토존 주변 벤치 구역"],
     lat: 36.8471,
@@ -119,7 +119,7 @@ const parksData = [
     description:
       "다양한 체육 시설과 넓은 잔디밭이 있어 가족 단위 방문객과 운동 마니아들이 찾는 공원입니다.",
     distance: 0,
-    image: "/images/id7.JPG",
+    image: `${import.meta.env.BASE_URL}images/id7.JPG`,
     address: "충청남도 천안시 동남구 신방동 719",
     convenience: [
       "축구장 옆 공중화장실",
@@ -139,7 +139,7 @@ const parksData = [
     description:
       "봄이면 벚꽃이 만개하여 환상적인 터널을 이루는 천안 주민들의 로컬 산책 명소입니다.",
     distance: 1500,
-    image: "/images/id8.jpg",
+    image: `${import.meta.env.BASE_URL}images/id8.jpg`,
     address: "충청남도 천안시 동남구 원성동",
     convenience: ["원성교 하부 벤치 쉼터", "중간 지점 간이 화장실"],
     lat: 36.8041,
@@ -155,7 +155,7 @@ const parksData = [
     description:
       "천안 IC 입구에 위치하여 야외 공연, 반려견 놀이터 등 다양한 여가를 즐길 수 있는 대형 광장 공원입니다.",
     distance: 0,
-    image: "/images/id9.jpg",
+    image: `${import.meta.env.BASE_URL}images/id9.jpg`,
     address: "충청남도 천안시 동남구 천안대로 844",
     convenience: [
       "지하 주차장 완비",
@@ -175,7 +175,7 @@ const parksData = [
     description:
       "웅장한 청동대불을 지나 산사의 고즈넉함과 계절의 변화를 느끼며 걷는 숲속 산책로입니다.",
     distance: 1500,
-    image: "/images/id10.webp",
+    image: `${import.meta.env.BASE_URL}images/id10.webp`,
     address: "충청남도 천안시 동남구 안서동 산98-83",
     convenience: [
       "각원사 대형 무료 주차장",
@@ -195,7 +195,7 @@ const parksData = [
     description:
       "쌍용동 주거 밀집 지역에 위치하여 접근성이 좋고, 울창한 나무들이 그늘을 만들어주는 공원입니다.",
     distance: 0,
-    image: "/images/id11.jpg",
+    image: `${import.meta.env.BASE_URL}images/id11.jpg`,
     address: "충청남도 천안시 서북구 쌍용동",
     convenience: [
       "공원 중앙 시계탑 옆 화장실",
@@ -214,7 +214,7 @@ const parksData = [
     description:
       "경사가 완만하여 남녀노소 누구나 부담 없이 가볍게 등산하듯 걸을 수 있는 도심 속 산길 코스입니다.",
     distance: 4500,
-    image: "/images/id12.jpg",
+    image: `${import.meta.env.BASE_URL}images/id12.jpg`,
     address: "충청남도 천안시 서북구 쌍용3동",
     convenience: [
       "아이파크 아파트 뒤쪽 진입로 흙먼지털이기",
@@ -233,7 +233,7 @@ const parksData = [
     description:
       "음악분수가 가동되어 여름철 시민들에게 시원한 볼거리와 휴식을 제공하는 친수 공원입니다.",
     distance: 0,
-    image: "/images/id13.webp",
+    image: `${import.meta.env.BASE_URL}images/id13.webp`,
     address: "충청남도 천안시 동남구 청수로 20",
     convenience: [
       "법원 방향 주차 공간",
@@ -253,7 +253,7 @@ const parksData = [
     description:
       "버스커버스커 노래로 유명한 '단대호수(천호지)'를 감싸고 도는 야경이 무척 아름다운 산책로 입니다.",
     distance: 2530,
-    image: "/images/id14.png",
+    image: `${import.meta.env.BASE_URL}images/id14.png`,
     address: "충청남도 천안시 동남구 단대로 119",
     convenience: [
       "천호지 공영주차장 및 공중화장실",
@@ -272,7 +272,7 @@ const parksData = [
     description:
       "직산 지역 주민들의 건강 증진을 위해 저수지 주변을 체육 공간으로 재탄생시킨 공원입니다.",
     distance: 1300,
-    image: "/images/id15.jpg",
+    image: `${import.meta.env.BASE_URL}images/id15.jpg`,
     address: "충청남도 천안시 서북구 직산읍 삼은리",
     convenience: [
       "체육관 건물 내 화장실 이용 가능",
@@ -292,7 +292,7 @@ const parksData = [
     description:
       "동남구 주민들이 주로 찾는 숨겨진 보석 같은 산책로, 조용히 사색하며 걷기 좋습니다.",
     distance: 2100,
-    image: "/images/id16.jpg",
+    image: `${import.meta.env.BASE_URL}images/id16.jpg`,
     address: "충청남도 천안시 동남구 병천면 유관순길 86",
     convenience: ["진입로 부근 정자 쉼터", "중간 갈림길 이정표 표지판"],
     lat: 36.7861,
@@ -308,7 +308,7 @@ const parksData = [
     description:
       "두정동 먹자골목 및 주거지와 인접해 있어 도심 속 허파 역할을 해주는 아담한 공원입니다.",
     distance: 0,
-    image: "/images/id17.webp",
+    image: `${import.meta.env.BASE_URL}images/id17.webp`,
     address: "충남 천안시 서북구 월봉로 25",
     convenience: [
       "공원 간이 화장실",
@@ -328,7 +328,7 @@ const parksData = [
     description:
       "가을이 되면 붉게 물든 단풍나무 터널이 끝없이 펼쳐지는 전국구 규모의 명품 산책 코스입니다.",
     distance: 3200,
-    image: "/images/id18.jpg",
+    image: `${import.meta.env.BASE_URL}images/id18.jpg`,
     address: "충청남도 천안시 동남구 목천읍 남화리 230-1",
     convenience: [
       "독립기념관 초대형 주차장(유료)",
@@ -348,7 +348,7 @@ const parksData = [
     description:
       "아이들이 안전하게 뛰어놀 수 있는 가족 친화형 공원입니다.",
     distance: 0,
-    image: "/images/id19.jpg",
+    image: `${import.meta.env.BASE_URL}images/id19.jpg`,
     address: "충남 천안시 서북구 성성동 160-14",
     convenience: ["공원 내 공용 화장실","벤치 및 휴게 공간 다수"],
     lat: 36.8230,
